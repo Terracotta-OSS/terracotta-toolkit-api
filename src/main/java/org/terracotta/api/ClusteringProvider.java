@@ -1,12 +1,12 @@
 package org.terracotta.api;
 
-import org.terracotta.cluster.TerracottaCluster;
-
 import java.util.concurrent.Callable;
+
+import org.terracotta.cluster.TerracottaCluster;
 
 public interface ClusteringProvider {
 
-  <T> T lookupOrCreateRoot(String rootName, Callable<T> createCallback);
+  <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
 
   void beginLock(String lockID, LockType type);
 
