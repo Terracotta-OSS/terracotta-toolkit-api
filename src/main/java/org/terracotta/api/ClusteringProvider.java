@@ -17,4 +17,6 @@ public interface ClusteringProvider {
   void monitorExit(Object obj, LockType type);
 
   TerracottaCluster getTerracottaCluster();
+
+  String getUUID();
 }
