@@ -3,22 +3,20 @@ package org.terracotta.api;
 import java.util.concurrent.Callable;
 
 import org.terracotta.cluster.TerracottaCluster;
+import org.terracotta.locking.LockType;
+import org.terracotta.locking.TerracottaLock;
 import org.terracotta.logging.TerracottaLogger;
 import org.terracotta.properties.TerracottaProperties;
 
 public interface ClusteringProvider {
 
-  <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
-
-  void beginLock(String lockID, LockType type);
-
-  void commitLock(String lockID, LockType type);
-
-  void monitorEnter(Object obj, LockType type);
-
-  void monitorExit(Object obj, LockType type);
+  TerracottaLock createLock(Object monitor, LockType type);
 
   TerracottaCluster getCluster();
+  
+  TerracottaLogger getLogger(String name);
+  
+  TerracottaProperties getProperties();
   
   /**
    * Disable eviction on the provided object in case it implements a Terracotta interface that supports this.
@@ -40,11 +38,9 @@ public interface ClusteringProvider {
   
   void registerBeforeShutdownHook(Runnable beforeShutdownHook);
   
+  <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
+  
   String getClientID();
   
   String getUUID();
-  
-  TerracottaLogger getLogger(String name);
-  
-  TerracottaProperties getProperties();
 }

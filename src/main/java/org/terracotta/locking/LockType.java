@@ -1,4 +1,4 @@
-package org.terracotta.api;
+package org.terracotta.locking;
 
 /**
  * Enum that contains the  lock types that are supported by Terracotta DSO.
