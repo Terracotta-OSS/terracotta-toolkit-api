@@ -19,7 +19,7 @@ public interface ClusteringProvider {
   TerracottaProperties getProperties();
   
   /**
-   * Disable eviction on the provided object in case it implements a Terracotta interface that supports this.
+   * Disable eviction of the provided object in case it implements a Terracotta interface that supports this.
    * 
    * @param object the object on which eviction should be disabled
    * @return {@code true} when eviction could be disabled; or {@code false} otherwise
@@ -27,20 +27,18 @@ public interface ClusteringProvider {
   boolean disableEviction(Object object);
   
   /**
-   * Enable eviction on the provided object in case it implements a Terracotta interface that supports this.
+   * Enable eviction of the provided object in case it implements a Terracotta interface that supports this.
    * 
    * @param object the object on which eviction should be enabled
    * @return {@code true} when eviction could be enabled; or {@code false} otherwise
    */
   boolean enableEviction(Object object);
   
+  <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
+  
   void waitForAllCurrentTransactionsToComplete();
   
   void registerBeforeShutdownHook(Runnable beforeShutdownHook);
-  
-  <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
-  
-  String getClientID();
   
   String getUUID();
 }
