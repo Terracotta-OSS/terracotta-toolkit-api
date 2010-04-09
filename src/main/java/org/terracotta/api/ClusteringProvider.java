@@ -18,6 +18,8 @@ public interface ClusteringProvider {
   
   TerracottaProperties getProperties();
   
+  String getUniversallyUniqueClientID();
+
   /**
    * Disable eviction of the provided object in case it implements a Terracotta interface that supports this.
    * 
@@ -39,6 +41,4 @@ public interface ClusteringProvider {
   void waitForAllCurrentTransactionsToComplete();
   
   void registerBeforeShutdownHook(Runnable beforeShutdownHook);
-  
-  String getUUID();
 }
