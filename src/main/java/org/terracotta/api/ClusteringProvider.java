@@ -19,6 +19,8 @@ public interface ClusteringProvider {
   TerracottaProperties getProperties();
   
   String getUniversallyUniqueClientID();
+  
+  /**** THE FOLLOWING METHODS STILL NEED REFACTORING ****/
 
   /**
    * Disable eviction of the provided object in case it implements a Terracotta interface that supports this.
