@@ -3,6 +3,7 @@ package org.terracotta.api;
 import java.util.concurrent.Callable;
 
 import org.terracotta.cluster.TerracottaCluster;
+import org.terracotta.coordination.Barrier;
 import org.terracotta.locking.LockType;
 import org.terracotta.locking.TerracottaLock;
 import org.terracotta.logging.TerracottaLogger;
@@ -39,6 +40,8 @@ public interface ClusteringProvider {
   boolean enableEviction(Object object);
   
   <T> T lookupOrCreateRoot(String rootName, Callable<T> creator);
+  
+  Barrier lookupOrCreateBarrierRoot(String barrierName, int parties);
   
   void waitForAllCurrentTransactionsToComplete();
   
