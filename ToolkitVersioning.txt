@@ -1,0 +1,30 @@
+The Terracottta toolkit uses a two part versioning scheme. Given a
+particular artifact such as terracotta-toolkit-1.0-runtime-1.0.0.jar
+it is fairly evident that there are two version numbers in there (1.0
+and 1.0.0) 
+
+The first number (1.0) refers to the version of the toolkit API. The
+toolkit conformance kit (TCK) enforces the rules for the API
+version. In general all versions 1.x are foward compatible with
+respect to previous versions. The only changes allowed when moving
+from 1.0 to 1.1 are additions -- existing methods/types/etc cannot be
+modified or removed. 
+
+The second number refers to the actual release version of the
+toolkit. The very first release of the 1.0 API toolkit will be version
+1.0.0. That release will work exclusively with terracotta core version
+3.3.0. The release version range of 1.0.0 to 1.0.x is reserved for
+changes to the toolkit itself while still being bound to core TC
+version 3.3.0. 
+
+When terracotta core 3.3.1 is released the next digit of the toolkit
+version will be used. More specifically the range 1.1.0 to 1.1.x will
+exclusively work with core TC vesion 3.3.1. 
+
+When the toolkit API changes from 1.0 to 1.1 we can reset the minimum
+core version that 1.0.0 works with if we please.
+
+
+
+
+
