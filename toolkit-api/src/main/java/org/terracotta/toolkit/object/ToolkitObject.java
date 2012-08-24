@@ -7,7 +7,7 @@ import org.terracotta.toolkit.Toolkit;
 
 /**
  * An instance retrieved/created using the {@link Toolkit}. Every instance created by the {@code Toolkit} is identified
- * by a {@linkplain #getName() name} and a {@linkplain #getType() type}.
+ * by a {@linkplain #getName() name}.
  */
 public interface ToolkitObject {
   /**

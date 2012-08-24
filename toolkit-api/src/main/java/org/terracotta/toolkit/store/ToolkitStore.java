@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * A Key-Value store used for storing key-value mappings. No eviction can happen on a Store. A key-value store can be
  * configured using various configs available in {@link ToolkitStoreConfigFields}. Consult
- * {@link Toolkit#getStore(String, Configuration, Class<V>)} for more info on various configs.
+ * {@link Toolkit#getStore(String, Configuration, Class)} for more info on various configs.
  * <p>
  * Consult the {@linkplain Toolkit Toolkit class level docs} for more info on behavior regarding destroy.
  * <p>
@@ -70,6 +70,7 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    * 
    * @return Check if the value is contained in the store.
    */
+  @Override
   public boolean containsValue(Object value);
 
   /**
