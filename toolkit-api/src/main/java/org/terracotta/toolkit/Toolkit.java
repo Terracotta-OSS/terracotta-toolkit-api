@@ -11,6 +11,7 @@ import org.terracotta.toolkit.collections.ToolkitBlockingQueue;
 import org.terracotta.toolkit.collections.ToolkitList;
 import org.terracotta.toolkit.collections.ToolkitMap;
 import org.terracotta.toolkit.collections.ToolkitSet;
+import org.terracotta.toolkit.collections.ToolkitSortedMap;
 import org.terracotta.toolkit.collections.ToolkitSortedSet;
 import org.terracotta.toolkit.concurrent.ToolkitBarrier;
 import org.terracotta.toolkit.concurrent.atomic.ToolkitAtomicLong;
@@ -214,6 +215,27 @@ public interface Toolkit {
   <K, V> ToolkitMap<K, V> getMap(String name, Class<K> keyKlazz, Class<V> valueKlazz);
 
   /**
+   * Returns an already created {@link ToolkitSortedMap} if one exists for the given {@code name}, otherwise creates one
+   * and returns it.
+   * <p>
+   * Toolkit Sorted maps are {@link Destroyable} and can be destroyed. Consult the {@linkplain Toolkit class level docs}
+   * for more info on behavior regarding destroy.
+   * <p>
+   * Implementations may choose to use the concrete class references to help enforce type safety of the returned data
+   * structure. Users can pass {@code null} class references in order to disable any implementation specific type
+   * checking and thereby gain raw access to the data structure.
+   * 
+   * @param <K> map key type
+   * @param <V> map value type
+   * @param name identifier for the map
+   * @param keyKlazz concrete class for {@code <K>}
+   * @param valueKlazz concrete class for {@code <V>}
+   * @return a toolkit map
+   */
+  <K extends Comparable<? super K>, V> ToolkitSortedMap<K, V> getSortedMap(String name, Class<K> keyKlazz,
+                                                                           Class<V> valueKlazz);
+
+  /**
    * Get or create a toolkit blocking queue with a capacity limit for the given {@code name}.
    * <p>
    * If the named queue already exists and it has the same capacity limit then it is returned. If it doesn't exist then
@@ -305,7 +327,7 @@ public interface Toolkit {
    * @param klazz concrete class for {@code <E>}
    * @return a toolkit notifier
    */
-   <E> ToolkitNotifier<E> getNotifier(String name, Class<E> klazz);
+  <E> ToolkitNotifier<E> getNotifier(String name, Class<E> klazz);
 
   /**
    * Returns a {@link ToolkitAtomicLong} for the given {@code name} parameter.
