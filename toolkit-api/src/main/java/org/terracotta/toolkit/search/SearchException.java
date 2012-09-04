@@ -1,7 +1,7 @@
 /*
  * All content copyright Terracotta, Inc., unless otherwise indicated. All rights reserved.
  */
-package org.terracotta.toolkit.internal.search;
+package org.terracotta.toolkit.search;
 
 public class SearchException extends Exception {
 

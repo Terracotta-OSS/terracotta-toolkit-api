@@ -3,6 +3,8 @@
  */
 package org.terracotta.toolkit.internal.search;
 
+import org.terracotta.toolkit.search.SearchException;
+
 /**
  * A builder that can be used for building and executing queries
  */

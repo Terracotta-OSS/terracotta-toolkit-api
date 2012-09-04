@@ -3,8 +3,9 @@
  */
 package org.terracotta.toolkit.internal.cache;
 
+import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.cluster.ClusterNode;
-import org.terracotta.toolkit.internal.meta.MetaData;
+import org.terracotta.toolkit.internal.search.SearchBuilder;
 
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
 /**
  * Internal api for ToolkitCache
  */
-public interface ToolkitCacheInternal<K, V> extends ToolkitCacheWithMetadata<K, V> {
+public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
 
   /**
    * Returns set of nodes which has the corresponding key in its local jvm
@@ -24,14 +25,14 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCacheWithMetadata<K, 
    * 
    * @param map input map
    */
-  void unlockedPutNoReturn(K k, V v, int createTime, int customTTI, int customTTL, MetaData metadata);
+  void unlockedPutNoReturn(K k, V v, int createTime, int customTTI, int customTTL);
 
   /**
    * Performs an unlocked remove. Its up to the user to take locks and create transactions.
    * 
    * @param map input map
    */
-  void unlockedRemoveNoReturn(Object k, MetaData metadata);
+  void unlockedRemoveNoReturn(Object k);
 
   /**
    * Performs an unlocked get.
@@ -120,9 +121,18 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCacheWithMetadata<K, 
    */
   boolean containsKeyLocalOffHeap(Object key);
 
+  V put(K key, V value, int createTimeInSecs, int customMaxTTISeconds, int customMaxTTLSeconds);
+
   /**
    * Dispose the Store from this node. If present elsewhere, the key-value store is still usable. Trying to use the
    * store after disposing locally will throw {@code IllegalStateException}.
    */
   public void disposeLocally();
+
+  public void removeAll(Set<K> keys);
+
+  /**
+   * Process meta-data. Only supported in enterprise version
+   */
+  SearchBuilder createSearchBuilder();
 }
