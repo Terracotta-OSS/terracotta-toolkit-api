@@ -504,7 +504,7 @@ public interface Toolkit {
    * @param capability capability which needs to be checked
    * @return true if the capability is enabled and can be used. Otherwise false
    */
-  boolean isCapabilityEnabled(ToolkitCapability capability);
+  boolean isCapabilityEnabled(String capability);
 
   /**
    * Shut down toolkit and release resources associated with the toolkit. Multiple calls do not have any effect and are

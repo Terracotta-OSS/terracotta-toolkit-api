@@ -14,5 +14,13 @@ public enum ToolkitCapability {
   /**
    * Offheap capability
    */
-  OFFHEAP
+  OFFHEAP;
+
+  public static ToolkitCapability getToolkitCapability(String capability) {
+    for (ToolkitCapability toolkitCapability : ToolkitCapability.values()) {
+      if (toolkitCapability.toString().equals(capability)) { return toolkitCapability; }
+    }
+
+    return null;
+  }
 }

@@ -35,11 +35,6 @@ public interface ToolkitInternal extends Toolkit {
   String getClientUUID();
 
   /**
-   * Check whether {@code capability} is enabled or not
-   */
-  void isCapabilityEnabled(String capability);
-
-  /**
    * Return properties of this toolkit
    */
   ToolkitProperties getProperties();
