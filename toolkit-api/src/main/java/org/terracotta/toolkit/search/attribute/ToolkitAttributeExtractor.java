@@ -11,7 +11,8 @@ public interface ToolkitAttributeExtractor extends Serializable {
 
   <K, V> Map<String, Object> attributesFor(K key, V value) throws ToolkitAttributeExtractorException;
 
-  public static final ToolkitAttributeExtractor NULL_EXTRACTOR = new ToolkitAttributeExtractor() {
+  // fully qualified for checkstyle
+  public static final org.terracotta.toolkit.search.attribute.ToolkitAttributeExtractor NULL_EXTRACTOR = new ToolkitAttributeExtractor() {
 
                                                                  @Override
                                                                  public <K, V> Map<String, Object> attributesFor(K key,
