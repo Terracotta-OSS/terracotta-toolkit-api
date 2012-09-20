@@ -3,7 +3,9 @@
  */
 package org.terracotta.toolkit.search;
 
-public class SearchException extends Exception {
+import org.terracotta.toolkit.ToolkitRuntimeException;
+
+public class SearchException extends ToolkitRuntimeException {
 
   public SearchException() {
     super();
