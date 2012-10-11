@@ -176,7 +176,7 @@ public interface Toolkit {
    * 
    * <pre>
    * public ToolkitStore getStore(String name) {
-   *   return getStore(name, getConfigBuilderFactory().newToolkitStoreConfigBuilder().build());
+   *   return getStore(name, new ToolkitStoreConfigBuilder().build());
    * }
    * </pre>
    * <p>
@@ -480,7 +480,7 @@ public interface Toolkit {
    * 
    * <pre>
    * public ToolkitCache getCache(String name) {
-   *   return getCache(name, getConfigBuilderFactory().newToolkitCacheConfigBuilder().build());
+   *   return getCache(name, new ToolkitCacheConfigBuilder().build());
    * }
    * </pre>
    * <p>
