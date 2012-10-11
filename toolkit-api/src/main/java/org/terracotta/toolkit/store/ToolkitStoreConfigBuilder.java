@@ -237,6 +237,12 @@ public class ToolkitStoreConfigBuilder {
 
   /**
    * Apply changes of this builder to the {@link ToolkitStore} parameter. The changes are the ones between each apply.
+   * <p>
+   * If the store's configuration has {@link ToolkitStoreConfigFields#MAX_BYTES_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link ToolkitStoreConfigBuilder#maxCountLocalHeap(long)} would result in an error.
+   * <p>
+   * If the store's configuration has {@link ToolkitStoreConfigFields#MAX_COUNT_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link ToolkitStoreConfigBuilder#maxBytesLocalHeap(long)} would result in an error.
    */
   public synchronized void apply(ToolkitStore store) {
     for (Iterator<ConfigFieldMapping> iter = fieldMappings.iterator(); iter.hasNext();) {
