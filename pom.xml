@@ -9,7 +9,7 @@
     <relativePath/>
   </parent>
 
-  <name>terracotta-toolkit-root</name>
+  <name>terracotta-toolkit-api-root</name>
   <groupId>org.terracotta.toolkit</groupId>
   <artifactId>terracotta-toolkit-api-root</artifactId>
   <version>2.0-SNAPSHOT</version>
@@ -18,7 +18,7 @@
   <modules>
     <module>toolkit-api</module>
     <module>toolkit-api-internal</module>
-    <!--module>tck</module-->
+    <module>tck</module>
   </modules>
 
   <repositories>
