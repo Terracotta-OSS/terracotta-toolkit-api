@@ -20,8 +20,8 @@ public class NonStopConfigBuilder {
   private long                                     timeout                 = NonStopConfigFields.DEFAULT_TIMEOUT_MILLIS;
   private NonStopToolkitType[]                     nonStopToolkitTypes     = SUPPORTED_TOOLKIT_TYPES
                                                                                .toArray(new NonStopToolkitType[0]);
-  private String                                   name                    = "*";
-  private String                                   methodRegex             = "*";
+  private String                                   name                    = null;
+  private String                                   method                  = null;
 
   public NonStopConfigBuilder nonStopTimeoutBehavior(NonStopTimeoutBehavior nonStopTimeoutBehaviorParam) {
     this.nonStopTimeoutBehavior = nonStopTimeoutBehaviorParam;
@@ -33,15 +33,15 @@ public class NonStopConfigBuilder {
     return this;
   }
 
-  public NonStopConfigBuilder nonStopToolkitTypeNames(String nameParam) {
+  public NonStopConfigBuilder nonStopToolkitTypeName(String nameParam) {
     if (nameParam == null) { throw new IllegalArgumentException("name cannot be null"); }
     this.name = nameParam;
     return this;
   }
 
-  public NonStopConfigBuilder nonStopToolkitTypeMethodNames(String methodRegexParam) {
-    if (methodRegexParam == null) { throw new IllegalArgumentException("methodRegex cannot be null"); }
-    this.methodRegex = methodRegexParam;
+  public NonStopConfigBuilder nonStopToolkitTypeMethodName(String methodParam) {
+    if (methodParam == null) { throw new IllegalArgumentException("methodRegex cannot be null"); }
+    this.method = methodParam;
     return this;
   }
 
@@ -61,7 +61,17 @@ public class NonStopConfigBuilder {
     NonStopConfigRegistry nonStopToolkitRegistry = toolkit.getNonStopToolkitRegistry();
     NonStopConfig config = new NonStopToolkitConfigImpl(timeout, nonStopTimeoutBehavior);
 
-    nonStopToolkitRegistry.register(config, name, methodRegex, nonStopToolkitTypes);
+    if (name == null && method == null) {
+      nonStopToolkitRegistry.registerForType(config, nonStopToolkitTypes);
+    } else if (name != null && method == null) {
+      nonStopToolkitRegistry.registerForInstance(config, name, nonStopToolkitTypes);
+    } else if (name == null && method != null) {
+      // TODO: verify that the method name exists for the ToolkitTypes
+      nonStopToolkitRegistry.registerForTypeMethod(config, method, nonStopToolkitTypes);
+    } else {
+      // TODO: verify that the method name exists for the ToolkitTypes
+      nonStopToolkitRegistry.registerForInstanceMethod(config, method, name, nonStopToolkitTypes);
+    }
   }
 
   private static class NonStopToolkitConfigImpl extends ConfigurationImpl implements NonStopConfig {
