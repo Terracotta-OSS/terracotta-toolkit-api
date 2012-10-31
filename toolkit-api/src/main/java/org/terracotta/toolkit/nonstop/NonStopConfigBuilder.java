@@ -3,23 +3,23 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import static org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopToolkitType.CACHE;
-import static org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopToolkitType.STORE;
+import static org.terracotta.toolkit.ToolkitObjectType.CACHE;
+import static org.terracotta.toolkit.ToolkitObjectType.STORE;
 
 import org.terracotta.toolkit.Toolkit;
+import org.terracotta.toolkit.ToolkitObjectType;
 import org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopTimeoutBehavior;
-import org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopToolkitType;
 import org.terracotta.toolkit.store.ConfigurationImpl;
 
 import java.util.EnumSet;
 
 public class NonStopConfigBuilder {
-  private static final EnumSet<NonStopToolkitType> SUPPORTED_TOOLKIT_TYPES = EnumSet.of(STORE, CACHE);
+  private static final EnumSet<ToolkitObjectType> SUPPORTED_TOOLKIT_TYPES = EnumSet.of(STORE, CACHE);
 
   private NonStopTimeoutBehavior                   nonStopTimeoutBehavior  = NonStopConfigFields.DEFAULT_NON_STOP_TIMEOUT_BEHAVIOR;
   private long                                     timeout                 = NonStopConfigFields.DEFAULT_TIMEOUT_MILLIS;
-  private NonStopToolkitType[]                     nonStopToolkitTypes     = SUPPORTED_TOOLKIT_TYPES
-                                                                               .toArray(new NonStopToolkitType[0]);
+  private ToolkitObjectType[]                     nonStopToolkitTypes     = SUPPORTED_TOOLKIT_TYPES
+                                                                               .toArray(new ToolkitObjectType[0]);
   private String                                   name                    = null;
   private String                                   method                  = null;
 
@@ -45,8 +45,8 @@ public class NonStopConfigBuilder {
     return this;
   }
 
-  public NonStopConfigBuilder nonStopToolkitType(NonStopToolkitType... nonStopToolkitTypesParam) {
-    for (NonStopToolkitType nonStopToolkitTypeParam : nonStopToolkitTypesParam) {
+  public NonStopConfigBuilder nonStopToolkitType(ToolkitObjectType... nonStopToolkitTypesParam) {
+    for (ToolkitObjectType nonStopToolkitTypeParam : nonStopToolkitTypesParam) {
       if (!SUPPORTED_TOOLKIT_TYPES.contains(nonStopToolkitTypeParam)) { throw new UnsupportedOperationException(
                                                                                                                 nonStopToolkitTypeParam
                                                                                                                     .name()

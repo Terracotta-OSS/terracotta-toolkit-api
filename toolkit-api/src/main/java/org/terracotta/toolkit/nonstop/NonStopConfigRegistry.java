@@ -3,40 +3,40 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopToolkitType;
+import org.terracotta.toolkit.ToolkitObjectType;
 
 public interface NonStopConfigRegistry {
   /**
    * Register methods
    */
-  void registerForType(NonStopConfig config, NonStopToolkitType... types);
+  void registerForType(NonStopConfig config, ToolkitObjectType... types);
 
-  void registerForInstance(NonStopConfig config, String toolkitTypeName, NonStopToolkitType... type);
+  void registerForInstance(NonStopConfig config, String toolkitTypeName, ToolkitObjectType... type);
 
-  void registerForTypeMethod(NonStopConfig config, String methodName, NonStopToolkitType... type);
+  void registerForTypeMethod(NonStopConfig config, String methodName, ToolkitObjectType... type);
 
   void registerForInstanceMethod(NonStopConfig config, String methodName, String toolkitTypeName,
-                                 NonStopToolkitType... type);
+                                 ToolkitObjectType... type);
 
   /**
    * Get methods
    */
-  NonStopConfig getConfigForType(NonStopToolkitType type);
+  NonStopConfig getConfigForType(ToolkitObjectType type);
 
-  NonStopConfig getConfigForInstance(String toolkitTypeName, NonStopToolkitType type);
+  NonStopConfig getConfigForInstance(String toolkitTypeName, ToolkitObjectType type);
 
-  NonStopConfig getConfigForTypeMethod(String methodName, NonStopToolkitType type);
+  NonStopConfig getConfigForTypeMethod(String methodName, ToolkitObjectType type);
 
-  NonStopConfig getConfigForInstanceMethod(String methodName, String toolkitTypeName, NonStopToolkitType type);
+  NonStopConfig getConfigForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
 
   /**
    * De-register methods
    */
-  NonStopConfig deregisterForType(NonStopToolkitType type);
+  NonStopConfig deregisterForType(ToolkitObjectType type);
 
-  NonStopConfig deregisterForInstance(String toolkitTypeName, NonStopToolkitType type);
+  NonStopConfig deregisterForInstance(String toolkitTypeName, ToolkitObjectType type);
 
-  NonStopConfig deregisterForTypeMethod(String methodName, NonStopToolkitType type);
+  NonStopConfig deregisterForTypeMethod(String methodName, ToolkitObjectType type);
 
-  NonStopConfig deregisterForInstanceMethod(String methodName, String toolkitTypeName, NonStopToolkitType type);
+  NonStopConfig deregisterForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
 }
