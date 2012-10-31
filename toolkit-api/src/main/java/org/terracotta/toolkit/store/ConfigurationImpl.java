@@ -10,11 +10,11 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-class ConfigurationImpl extends AbstractConfiguration implements Configuration {
+public class ConfigurationImpl extends AbstractConfiguration implements Configuration {
 
   private final ConcurrentHashMap<String, Serializable> map = new ConcurrentHashMap<String, Serializable>();
 
-  ConfigurationImpl() {
+  protected ConfigurationImpl() {
     //
   }
 
