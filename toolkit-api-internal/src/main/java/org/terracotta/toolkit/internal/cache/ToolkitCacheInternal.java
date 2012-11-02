@@ -5,7 +5,6 @@ package org.terracotta.toolkit.internal.cache;
 
 import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.cluster.ClusterNode;
-import org.terracotta.toolkit.internal.search.SearchBuilder;
 
 import java.util.Map;
 import java.util.Set;
@@ -130,9 +129,4 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   public void disposeLocally();
 
   public void removeAll(Set<K> keys);
-
-  /**
-   * Process meta-data. Only supported in enterprise version
-   */
-  SearchBuilder createSearchBuilder();
 }
