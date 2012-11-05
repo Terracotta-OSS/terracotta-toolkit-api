@@ -3,14 +3,13 @@
  */
 package org.terracotta.toolkit.search.attribute;
 
-import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Collections;
 import java.util.Map;
 
-public interface ToolkitAttributeExtractor extends Serializable {
+public interface ToolkitAttributeExtractor {
 
   /**
    * Returns map of extracted attribute names to their values, for given key/value pair. If return value is
