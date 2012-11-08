@@ -31,7 +31,8 @@ import org.terracotta.toolkit.tck.TCKStrict;
 @TCKStrict
 public interface ClusterListener {
   /**
-   * This method is called whenever a {@link ClusterEvent} occurs
+   * This method is called whenever a {@link ClusterEvent} occurs. The {@code event} can be type of
+   * {@link RejoinClusterEvent} in case of rejoin-events
    * 
    * @param event details about the event
    */
