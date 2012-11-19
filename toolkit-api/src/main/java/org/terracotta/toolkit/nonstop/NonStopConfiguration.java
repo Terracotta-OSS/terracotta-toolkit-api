@@ -3,10 +3,12 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import org.terracotta.toolkit.nonstop.NonStopConfigFields.NonStopTimeoutBehavior;
+import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopTimeoutBehavior;
 
-public interface NonStopConfig {
+public interface NonStopConfiguration {
   NonStopTimeoutBehavior getNonStopTimeoutBehavior();
 
-  long getTimeout();
+  long getTimeoutMillis();
+  
+  boolean isEnabled();
 }
