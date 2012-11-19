@@ -4,23 +4,20 @@
 package org.terracotta.toolkit.nonstop;
 
 public interface NonStopConfigurationFields {
-  enum ReadTimeoutBehavior {
-    EXCEPTION_ON_TIMEOUT, NO_OP, LOCAL_READS
+  enum NonStopTimeoutBehavior {
+    EXCEPTION_ON_TIMEOUT, NO_OP, LOCAL_READS, EXCEPTION_ON_MUTATE_AND_LOCAL_READS
   }
 
   enum WriteTimeoutBehavior {
     EXCEPTION_ON_TIMEOUT, NO_OP
   }
 
-  String               NON_STOP_TIMEOUT_MILLIS                 = "nonStopTimeoutMillis";
-  long                 DEFAULT_TIMEOUT_MILLIS                  = 0;
+  String                 NON_STOP_TIMEOUT_MILLIS           = "nonStopTimeoutMillis";
+  long                   DEFAULT_TIMEOUT_MILLIS            = 0;
 
-  String               NON_STOP_TIMEOUT_READ_BEHAVIOR          = "nonStopTimeoutReadBehavior";
-  ReadTimeoutBehavior  DEFAULT_NON_STOP_TIMEOUT_READ_BEHAVIOR  = ReadTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
+  String                 NON_STOP_TIMEOUT_BEHAVIOR         = "nonStopTimeoutBehavior";
+  NonStopTimeoutBehavior DEFAULT_NON_STOP_TIMEOUT_BEHAVIOR = NonStopTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
 
-  String               NON_STOP_TIMEOUT_WRITE_BEHAVIOR         = "nonStopTimeoutWriteBehavior";
-  WriteTimeoutBehavior DEFAULT_NON_STOP_TIMEOUT_WRITE_BEHAVIOR = WriteTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
-
-  String               NON_STOP_ENABLED                        = "nonStopEnabled";
-  boolean              DEFAULT_NON_STOP_ENABLED                = true;
+  String                 NON_STOP_ENABLED                  = "nonStopEnabled";
+  boolean                DEFAULT_NON_STOP_ENABLED          = true;
 }

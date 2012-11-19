@@ -16,7 +16,7 @@ import java.util.EnumSet;
 public class NonStopConfigurationBuilder {
   private static final EnumSet<ToolkitObjectType> SUPPORTED_TOOLKIT_TYPES = EnumSet.of(STORE, CACHE);
 
-  private NonStopTimeoutBehavior                  nonStopTimeoutBehavior  = NonStopConfigurationFields.DEFAULT_NON_STOP_TIMEOUT_READ_BEHAVIOR;
+  private NonStopTimeoutBehavior                  nonStopTimeoutBehavior  = NonStopConfigurationFields.DEFAULT_NON_STOP_TIMEOUT_BEHAVIOR;
   private long                                    timeout                 = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
   private boolean                                 isEnabled               = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
   private ToolkitObjectType[]                     nonStopToolkitTypes     = SUPPORTED_TOOLKIT_TYPES
@@ -84,13 +84,13 @@ public class NonStopConfigurationBuilder {
 
     NonStopToolkitConfigImpl(boolean isEnabled, long timeout, NonStopTimeoutBehavior nonStopTimeoutBehavior) {
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_MILLIS, timeout);
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_READ_BEHAVIOR, nonStopTimeoutBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_BEHAVIOR, nonStopTimeoutBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_ENABLED, isEnabled);
     }
 
     @Override
     public NonStopTimeoutBehavior getNonStopTimeoutBehavior() {
-      String mode = getString(NonStopConfigurationFields.NON_STOP_TIMEOUT_READ_BEHAVIOR);
+      String mode = getString(NonStopConfigurationFields.NON_STOP_TIMEOUT_BEHAVIOR);
       return NonStopTimeoutBehavior.valueOf(mode);
     }
 
