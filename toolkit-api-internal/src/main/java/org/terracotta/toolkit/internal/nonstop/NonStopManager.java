@@ -16,7 +16,8 @@ public interface NonStopManager {
   void finish();
 
   /**
-   * Shutdown this manager
+   * return true If a nonstop operation is started.
    */
-  void shutdown();
+  boolean isBegin();
+
 }
