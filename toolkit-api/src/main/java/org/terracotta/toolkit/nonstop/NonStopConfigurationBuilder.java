@@ -14,18 +14,26 @@ import org.terracotta.toolkit.store.ConfigurationImpl;
 import java.util.EnumSet;
 
 public class NonStopConfigurationBuilder {
-  private static final EnumSet<ToolkitObjectType> SUPPORTED_TOOLKIT_TYPES = EnumSet.of(STORE, CACHE);
+  private static final EnumSet<ToolkitObjectType> SUPPORTED_TOOLKIT_TYPES           = EnumSet.of(STORE, CACHE);
 
-  private NonStopTimeoutBehavior                  nonStopTimeoutBehavior  = NonStopConfigurationFields.DEFAULT_NON_STOP_TIMEOUT_BEHAVIOR;
-  private long                                    timeout                 = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
-  private boolean                                 isEnabled               = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
-  private ToolkitObjectType[]                     nonStopToolkitTypes     = SUPPORTED_TOOLKIT_TYPES
-                                                                              .toArray(new ToolkitObjectType[0]);
-  private String                                  name                    = null;
-  private String                                  method                  = null;
+  private NonStopTimeoutBehavior                  immutableOpNonStopTimeoutBehavior = NonStopConfigurationFields.DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR;
+  private NonStopTimeoutBehavior                  mutableOpNonStopTimeoutBehavior   = NonStopConfigurationFields.DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR;
+  private long                                    timeout                           = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
+  private boolean                                 isEnabled                         = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
+  private boolean                                 immediateTimeout                  = NonStopConfigurationFields.DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED;
 
-  public NonStopConfigurationBuilder nonStopTimeoutBehavior(NonStopTimeoutBehavior nonStopTimeoutBehaviorParam) {
-    this.nonStopTimeoutBehavior = nonStopTimeoutBehaviorParam;
+  private ToolkitObjectType[]                     nonStopToolkitTypes               = SUPPORTED_TOOLKIT_TYPES
+                                                                                        .toArray(new ToolkitObjectType[0]);
+  private String                                  name                              = null;
+  private String                                  method                            = null;
+
+  public NonStopConfigurationBuilder nonStopTimeoutBehavior(NonStopTimeoutBehavior immutableOpBehavior,
+                                                            NonStopTimeoutBehavior mutableOpBehavior) {
+    if (mutableOpBehavior == NonStopTimeoutBehavior.LOCAL_READS) { throw new IllegalArgumentException(
+                                                                                                      "LOCAL_READS is not supported for mutable operations"); }
+
+    this.immutableOpNonStopTimeoutBehavior = immutableOpBehavior;
+    this.mutableOpNonStopTimeoutBehavior = mutableOpBehavior;
     return this;
   }
 
@@ -37,6 +45,11 @@ public class NonStopConfigurationBuilder {
   public NonStopConfigurationBuilder toolkitInstanceName(String nameParam) {
     if (nameParam == null) { throw new IllegalArgumentException("name cannot be null"); }
     this.name = nameParam;
+    return this;
+  }
+
+  public NonStopConfigurationBuilder immediateTimeout(boolean enabled) {
+    this.immediateTimeout = enabled;
     return this;
   }
 
@@ -65,7 +78,9 @@ public class NonStopConfigurationBuilder {
 
   public void apply(Toolkit toolkit) {
     NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.getNonStopToolkitRegistry();
-    NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, nonStopTimeoutBehavior);
+    NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
+                                                               mutableOpNonStopTimeoutBehavior,
+                                                               immediateTimeout);
 
     if (name == null && method == null) {
       nonStopToolkitRegistry.registerForType(config, nonStopToolkitTypes);
@@ -82,15 +97,25 @@ public class NonStopConfigurationBuilder {
 
   private static class NonStopToolkitConfigImpl extends ConfigurationImpl implements NonStopConfiguration {
 
-    NonStopToolkitConfigImpl(boolean isEnabled, long timeout, NonStopTimeoutBehavior nonStopTimeoutBehavior) {
+    NonStopToolkitConfigImpl(boolean isEnabled, long timeout, NonStopTimeoutBehavior immutableOpBehavior,
+                             NonStopTimeoutBehavior mutableOpBehavior,
+                             boolean immediateTimeout) {
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_MILLIS, timeout);
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_BEHAVIOR, nonStopTimeoutBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_READ_TIMEOUT_BEHAVIOR, immutableOpBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_WRITE_TIMEOUT_BEHAVIOR, mutableOpBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_ENABLED, isEnabled);
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMEDIATE_TIMEOUT_ENABLED, immediateTimeout);
     }
 
     @Override
-    public NonStopTimeoutBehavior getNonStopTimeoutBehavior() {
-      String mode = getString(NonStopConfigurationFields.NON_STOP_TIMEOUT_BEHAVIOR);
+    public NonStopTimeoutBehavior getImmutableOpNonStopTimeoutBehavior() {
+      String mode = getString(NonStopConfigurationFields.NON_STOP_READ_TIMEOUT_BEHAVIOR);
+      return NonStopTimeoutBehavior.valueOf(mode);
+    }
+
+    @Override
+    public NonStopTimeoutBehavior getMutableOpNonStopTimeoutBehavior() {
+      String mode = getString(NonStopConfigurationFields.NON_STOP_WRITE_TIMEOUT_BEHAVIOR);
       return NonStopTimeoutBehavior.valueOf(mode);
     }
 
@@ -102,6 +127,11 @@ public class NonStopConfigurationBuilder {
     @Override
     public boolean isEnabled() {
       return getBoolean(NonStopConfigurationFields.NON_STOP_ENABLED);
+    }
+
+    @Override
+    public boolean isImmediateTimeoutEnabled() {
+      return getBoolean(NonStopConfigurationFields.NON_STOP_IMMEDIATE_TIMEOUT_ENABLED);
     }
 
   }
