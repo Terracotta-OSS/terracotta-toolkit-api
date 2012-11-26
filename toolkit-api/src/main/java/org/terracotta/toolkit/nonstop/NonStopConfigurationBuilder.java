@@ -101,21 +101,21 @@ public class NonStopConfigurationBuilder {
                              NonStopTimeoutBehavior mutableOpBehavior,
                              boolean immediateTimeout) {
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_MILLIS, timeout);
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_READ_TIMEOUT_BEHAVIOR, immutableOpBehavior.name());
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_WRITE_TIMEOUT_BEHAVIOR, mutableOpBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR, immutableOpBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_MUTABLE_OP_TIMEOUT_BEHAVIOR, mutableOpBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_ENABLED, isEnabled);
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMEDIATE_TIMEOUT_ENABLED, immediateTimeout);
     }
 
     @Override
     public NonStopTimeoutBehavior getImmutableOpNonStopTimeoutBehavior() {
-      String mode = getString(NonStopConfigurationFields.NON_STOP_READ_TIMEOUT_BEHAVIOR);
+      String mode = getString(NonStopConfigurationFields.NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR);
       return NonStopTimeoutBehavior.valueOf(mode);
     }
 
     @Override
     public NonStopTimeoutBehavior getMutableOpNonStopTimeoutBehavior() {
-      String mode = getString(NonStopConfigurationFields.NON_STOP_WRITE_TIMEOUT_BEHAVIOR);
+      String mode = getString(NonStopConfigurationFields.NON_STOP_MUTABLE_OP_TIMEOUT_BEHAVIOR);
       return NonStopTimeoutBehavior.valueOf(mode);
     }
 
