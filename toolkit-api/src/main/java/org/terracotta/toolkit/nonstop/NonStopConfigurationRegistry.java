@@ -17,6 +17,8 @@ public interface NonStopConfigurationRegistry {
 
   void registerForInstanceMethod(NonStopConfiguration config, String methodName, String toolkitTypeName,
                                  ToolkitObjectType... type);
+  
+  void registerForThread(NonStopConfiguration config);
 
   /**
    * Get methods
@@ -29,6 +31,8 @@ public interface NonStopConfigurationRegistry {
 
   NonStopConfiguration getConfigForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
 
+  NonStopConfiguration getConfigForThread();
+
   /**
    * De-register methods
    */
@@ -39,4 +43,6 @@ public interface NonStopConfigurationRegistry {
   NonStopConfiguration deregisterForTypeMethod(String methodName, ToolkitObjectType type);
 
   NonStopConfiguration deregisterForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
+
+  NonStopConfiguration deregisterForThread();
 }
