@@ -15,6 +15,8 @@ public interface NonStopConfiguration {
   NonStopTimeoutBehavior getImmutableOpNonStopTimeoutBehavior();
 
   /**
+   * LOCAL_READS is not a supported behavior for mutable ops.
+   * 
    * @return Mutable Operations Non Stop Timeout Behavior associated with this {@link NonStopConfiguration}
    */
   NonStopTimeoutBehavior getMutableOpNonStopTimeoutBehavior();

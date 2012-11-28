@@ -3,29 +3,21 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import static org.terracotta.toolkit.ToolkitObjectType.CACHE;
-import static org.terracotta.toolkit.ToolkitObjectType.STORE;
-
 import org.terracotta.toolkit.Toolkit;
 import org.terracotta.toolkit.ToolkitObjectType;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopTimeoutBehavior;
 import org.terracotta.toolkit.store.ConfigurationImpl;
 
-import java.util.EnumSet;
-
 public class NonStopConfigurationBuilder {
-  private static final EnumSet<ToolkitObjectType> SUPPORTED_TOOLKIT_TYPES           = EnumSet.of(STORE, CACHE);
+  private NonStopTimeoutBehavior immutableOpNonStopTimeoutBehavior = NonStopConfigurationFields.DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR;
+  private NonStopTimeoutBehavior mutableOpNonStopTimeoutBehavior   = NonStopConfigurationFields.DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR;
+  private long                   timeout                           = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
+  private boolean                isEnabled                         = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
+  private boolean                immediateTimeout                  = NonStopConfigurationFields.DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED;
 
-  private NonStopTimeoutBehavior                  immutableOpNonStopTimeoutBehavior = NonStopConfigurationFields.DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR;
-  private NonStopTimeoutBehavior                  mutableOpNonStopTimeoutBehavior   = NonStopConfigurationFields.DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR;
-  private long                                    timeout                           = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
-  private boolean                                 isEnabled                         = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
-  private boolean                                 immediateTimeout                  = NonStopConfigurationFields.DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED;
-
-  private ToolkitObjectType[]                     nonStopToolkitTypes               = SUPPORTED_TOOLKIT_TYPES
-                                                                                        .toArray(new ToolkitObjectType[0]);
-  private String                                  name                              = null;
-  private String                                  method                            = null;
+  private ToolkitObjectType[]    nonStopToolkitTypes               = null;
+  private String                 name                              = null;
+  private String                 method                            = null;
 
   public NonStopConfigurationBuilder nonStopTimeoutBehavior(NonStopTimeoutBehavior immutableOpBehavior,
                                                             NonStopTimeoutBehavior mutableOpBehavior) {
@@ -60,13 +52,6 @@ public class NonStopConfigurationBuilder {
   }
 
   public NonStopConfigurationBuilder nonStopToolkitType(ToolkitObjectType... nonStopToolkitTypesParam) {
-    for (ToolkitObjectType nonStopToolkitTypeParam : nonStopToolkitTypesParam) {
-      if (!SUPPORTED_TOOLKIT_TYPES.contains(nonStopToolkitTypeParam)) { throw new UnsupportedOperationException(
-                                                                                                                nonStopToolkitTypeParam
-                                                                                                                    .name()
-                                                                                                                    + " is not yet supported as a non stop data structure"); }
-    }
-
     this.nonStopToolkitTypes = nonStopToolkitTypesParam;
     return this;
   }
@@ -77,6 +62,9 @@ public class NonStopConfigurationBuilder {
   }
 
   public void apply(Toolkit toolkit) {
+    if (nonStopToolkitTypes == null) { throw new IllegalStateException(
+                                                                       "Please set ToolkitObjectType for which this NonStopConfiguation needs to be registered"); }
+
     NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.getNonStopToolkitRegistry();
     NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
                                                                mutableOpNonStopTimeoutBehavior, immediateTimeout);
