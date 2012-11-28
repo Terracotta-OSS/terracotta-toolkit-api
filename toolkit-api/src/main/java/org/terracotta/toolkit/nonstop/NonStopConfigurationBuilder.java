@@ -79,30 +79,36 @@ public class NonStopConfigurationBuilder {
   public void apply(Toolkit toolkit) {
     NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.getNonStopToolkitRegistry();
     NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
-                                                               mutableOpNonStopTimeoutBehavior,
-                                                               immediateTimeout);
+                                                               mutableOpNonStopTimeoutBehavior, immediateTimeout);
 
     if (name == null && method == null) {
       nonStopToolkitRegistry.registerForType(config, nonStopToolkitTypes);
     } else if (name != null && method == null) {
-      nonStopToolkitRegistry.registerForInstance(config, name, nonStopToolkitTypes);
+      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
+        nonStopToolkitRegistry.registerForInstance(config, name, nonStopToolkitType);
+      }
     } else if (name == null && method != null) {
       // TODO: verify that the method name exists for the ToolkitTypes
-      nonStopToolkitRegistry.registerForTypeMethod(config, method, nonStopToolkitTypes);
+      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
+        nonStopToolkitRegistry.registerForTypeMethod(config, method, nonStopToolkitType);
+      }
     } else {
       // TODO: verify that the method name exists for the ToolkitTypes
-      nonStopToolkitRegistry.registerForInstanceMethod(config, method, name, nonStopToolkitTypes);
+      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
+        nonStopToolkitRegistry.registerForInstanceMethod(config, method, name, nonStopToolkitType);
+      }
     }
   }
 
   private static class NonStopToolkitConfigImpl extends ConfigurationImpl implements NonStopConfiguration {
 
     NonStopToolkitConfigImpl(boolean isEnabled, long timeout, NonStopTimeoutBehavior immutableOpBehavior,
-                             NonStopTimeoutBehavior mutableOpBehavior,
-                             boolean immediateTimeout) {
+                             NonStopTimeoutBehavior mutableOpBehavior, boolean immediateTimeout) {
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_MILLIS, timeout);
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR, immutableOpBehavior.name());
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_MUTABLE_OP_TIMEOUT_BEHAVIOR, mutableOpBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR,
+                               immutableOpBehavior.name());
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_MUTABLE_OP_TIMEOUT_BEHAVIOR,
+                               mutableOpBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_ENABLED, isEnabled);
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_IMMEDIATE_TIMEOUT_ENABLED, immediateTimeout);
     }
