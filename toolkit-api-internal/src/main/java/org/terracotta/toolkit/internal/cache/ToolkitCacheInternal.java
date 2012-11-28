@@ -6,6 +6,7 @@ package org.terracotta.toolkit.internal.cache;
 import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.cluster.ClusterNode;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,6 +40,8 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
    * @param map input map
    */
   V unlockedGet(Object k, boolean quiet);
+
+  Map<K, V> unlockedGetAll(Collection<K> keys, boolean quiet);
 
   /**
    * Clear the local cache

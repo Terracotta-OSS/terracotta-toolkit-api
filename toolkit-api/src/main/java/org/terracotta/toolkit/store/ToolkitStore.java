@@ -10,7 +10,6 @@ import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitObject;
 import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeException;
 import org.terracotta.toolkit.search.QueryBuilder;
-import org.terracotta.toolkit.search.SearchExecutor;
 import org.terracotta.toolkit.search.attribute.ToolkitAttributeExtractor;
 
 import java.io.Serializable;
@@ -88,6 +87,9 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    */
   ToolkitReadWriteLock createLockForKey(K key);
 
+  /**
+   * Set indexed attribute extractor. This store is considered searchable if this method has been called at least once.
+   */
   void setAttributeExtractor(ToolkitAttributeExtractor attrExtractor);
 
   /**
@@ -95,8 +97,4 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    */
   QueryBuilder createQueryBuilder();
 
-  /**
-   * Expert: create a reusable search executor instance for running queries against this store
-   */
-  SearchExecutor createSearchExecutor();
 }

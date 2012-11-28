@@ -3,8 +3,6 @@
  */
 package org.terracotta.toolkit.search;
 
-import org.terracotta.toolkit.store.ToolkitStore;
-
 import java.util.List;
 import java.util.Set;
 
@@ -12,11 +10,6 @@ import java.util.Set;
  * Specifies search query parameters
  */
 public interface ToolkitSearchQuery {
-
-  /**
-   * Returns {@link ToolkitStore} this query is associated with.
-   */
-  <K, V> ToolkitStore<K, V> getStore();
 
   /**
    * Returns set of attributes requested with each result.
@@ -37,11 +30,6 @@ public interface ToolkitSearchQuery {
    * Returns aggregators requested in result set.
    */
   <T> List<T> getAggregators();
-
-  /**
-   * Internal use only
-   */
-  List getQueryStack();
 
   /**
    * Returns maximum desired number of results.
