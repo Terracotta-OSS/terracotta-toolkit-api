@@ -21,11 +21,6 @@ public interface SearchResult {
   Object getValue();
 
   /**
-   * Fault in actual object value from backend. Only supported for non-grouped results. XXX - clean this up later
-   */
-  void preFetchValue();
-
-  /**
    * Map of attribute names requested with the query to their respective values.
    */
   Map<String, Object> getAttributes();
