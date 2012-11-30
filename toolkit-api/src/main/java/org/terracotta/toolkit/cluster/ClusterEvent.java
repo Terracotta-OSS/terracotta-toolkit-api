@@ -10,6 +10,7 @@ import org.terracotta.toolkit.tck.TCKStrict;
  */
 @TCKStrict
 public interface ClusterEvent {
+  @TCKStrict
   static enum Type {
     /**
      * Sent when a node joined the cluster, including the current node.
@@ -54,7 +55,11 @@ public interface ClusterEvent {
      * 
      * @see ClusterInfo#areOperationsEnabled()
      */
-    OPERATIONS_DISABLED
+    OPERATIONS_DISABLED,
+    /**
+     * When a node rejoins the cluster. {@link ClusterEvent#getNode()} will return the new node id after rejoin.
+     */
+    NODE_REJOINED
   }
 
   /**

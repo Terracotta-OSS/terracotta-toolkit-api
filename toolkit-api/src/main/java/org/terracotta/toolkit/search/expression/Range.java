@@ -27,11 +27,11 @@ public class Range extends BaseClause {
     this.maxInclusive = maxInclusive;
   }
   
-  private void verifyType(String attrName, Object min, Object max) {
-    if ((min == null) || (max == null)) { throw new NullPointerException(); }
+  private void verifyType(String attrName, Object minValue, Object maxValue) {
+    if ((minValue == null) || (maxValue == null)) { throw new NullPointerException(); }
 
-    ToolkitAttributeType minType = ToolkitAttributeType.typeFor(attrName, min);
-    ToolkitAttributeType maxType = ToolkitAttributeType.typeFor(attrName, max);
+    ToolkitAttributeType minType = ToolkitAttributeType.typeFor(attrName, minValue);
+    ToolkitAttributeType maxType = ToolkitAttributeType.typeFor(attrName, maxValue);
 
     if (minType != maxType) { throw new SearchException("Different types for min (" + minType + ") and max (" + maxType
                                                         + ")"); }
