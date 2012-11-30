@@ -90,7 +90,7 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   /**
    * Set indexed attribute extractor. This store is considered searchable if this method has been called at least once.
    */
-  void setAttributeExtractor(ToolkitAttributeExtractor attrExtractor);
+  void setAttributeExtractor(ToolkitAttributeExtractor<K, V> attrExtractor);
 
   /**
    * Create a new query builder to construct a search query tied to this store
