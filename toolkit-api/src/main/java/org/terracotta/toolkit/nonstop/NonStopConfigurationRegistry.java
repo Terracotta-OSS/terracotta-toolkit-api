@@ -45,12 +45,6 @@ public interface NonStopConfigurationRegistry {
    */
   void registerForInstanceMethod(NonStopConfiguration config, String methodName, String toolkitTypeName,
                                  ToolkitObjectType type);
-  
-  /**
-   * Register {@link NonStopConfiguration} for the current thread. This {@link NonStopConfiguration} will be chosen for
-   * the current thread irrespective of what the {@link NonStopConfiguration} is set for the {@link ToolkitObject}.
-   */
-  void registerForThread(NonStopConfiguration config);
 
   /**
    * @return {@link NonStopConfiguration} for the {@link ToolkitObjectType}
@@ -74,11 +68,6 @@ public interface NonStopConfigurationRegistry {
   NonStopConfiguration getConfigForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
 
   /**
-   * @return {@link NonStopConfiguration} for the current thread
-   */
-  NonStopConfiguration getConfigForThread();
-
-  /**
    * De-register the {@link NonStopConfiguration} associated with the {@link ToolkitObjectType}
    */
   NonStopConfiguration deregisterForType(ToolkitObjectType type);
@@ -100,9 +89,4 @@ public interface NonStopConfigurationRegistry {
    * instance name is passed in as param.
    */
   NonStopConfiguration deregisterForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
-
-  /**
-   * De-register the {@link NonStopConfiguration} associated with the current thread.
-   */
-  NonStopConfiguration deregisterForThread();
 }

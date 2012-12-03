@@ -21,7 +21,6 @@ import org.terracotta.toolkit.concurrent.locks.ToolkitReadWriteLock;
 import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.events.ToolkitNotifier;
 import org.terracotta.toolkit.monitoring.OperatorEventLevel;
-import org.terracotta.toolkit.nonstop.NonStopConfigurationRegistry;
 import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitLockedObject;
 import org.terracotta.toolkit.object.ToolkitObject;
@@ -513,5 +512,5 @@ public interface Toolkit {
    */
   void shutdown();
 
-  NonStopConfigurationRegistry getNonStopToolkitRegistry();
+  NonStopToolkit asNonStopToolkit();
 }

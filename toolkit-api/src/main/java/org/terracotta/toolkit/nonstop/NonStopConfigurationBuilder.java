@@ -65,7 +65,7 @@ public class NonStopConfigurationBuilder {
     if (nonStopToolkitTypes == null) { throw new IllegalStateException(
                                                                        "Please set ToolkitObjectType for which this NonStopConfiguation needs to be registered"); }
 
-    NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.getNonStopToolkitRegistry();
+    NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.asNonStopToolkit().getNonStopToolkitRegistry();
     NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
                                                                mutableOpNonStopTimeoutBehavior, immediateTimeout);
 

@@ -6,7 +6,6 @@ package org.terracotta.toolkit.internal;
 import org.terracotta.toolkit.Toolkit;
 import org.terracotta.toolkit.concurrent.locks.ToolkitLock;
 import org.terracotta.toolkit.internal.concurrent.locks.ToolkitLockTypeInternal;
-import org.terracotta.toolkit.internal.nonstop.NonStopManager;
 
 public interface ToolkitInternal extends Toolkit {
 
@@ -39,9 +38,4 @@ public interface ToolkitInternal extends Toolkit {
    * Return properties of this toolkit
    */
   ToolkitProperties getProperties();
-
-  /**
-   * Expose non stop manager
-   */
-  NonStopManager getNonStopManager();
 }
