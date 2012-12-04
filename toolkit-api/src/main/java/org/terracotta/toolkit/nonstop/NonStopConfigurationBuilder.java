@@ -25,6 +25,8 @@ public class NonStopConfigurationBuilder {
   }
 
   public NonStopConfigurationBuilder timeoutMillis(long timeoutParam) {
+    if (timeoutParam < 0) { throw new IllegalArgumentException("timeout cannot be less than 0"); }
+
     this.timeout = timeoutParam;
     return this;
   }
