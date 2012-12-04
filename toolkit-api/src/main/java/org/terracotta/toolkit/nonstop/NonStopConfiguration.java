@@ -3,7 +3,8 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopTimeoutBehavior;
+import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopReadTimeoutBehavior;
+import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopWriteTimeoutBehavior;
 
 /**
  * Configuration for using non stop
@@ -12,14 +13,12 @@ public interface NonStopConfiguration {
   /**
    * @return Immutable Operations Non Stop Timeout Behavior associated with this {@link NonStopConfiguration}
    */
-  NonStopTimeoutBehavior getImmutableOpNonStopTimeoutBehavior();
+  NonStopReadTimeoutBehavior getImmutableOpNonStopTimeoutBehavior();
 
   /**
-   * LOCAL_READS is not a supported behavior for mutable ops.
-   * 
    * @return Mutable Operations Non Stop Timeout Behavior associated with this {@link NonStopConfiguration}
    */
-  NonStopTimeoutBehavior getMutableOpNonStopTimeoutBehavior();
+  NonStopWriteTimeoutBehavior getMutableOpNonStopTimeoutBehavior();
 
   /**
    * @return time out in millis. This is the time out after which toolkit will attempt to abort the on going operation.

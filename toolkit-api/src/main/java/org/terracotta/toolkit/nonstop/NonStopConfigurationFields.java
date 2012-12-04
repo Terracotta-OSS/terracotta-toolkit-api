@@ -4,22 +4,26 @@
 package org.terracotta.toolkit.nonstop;
 
 public interface NonStopConfigurationFields {
-  enum NonStopTimeoutBehavior {
+  enum NonStopReadTimeoutBehavior {
     EXCEPTION_ON_TIMEOUT, NO_OP, LOCAL_READS
   }
 
-  String                 NON_STOP_TIMEOUT_MILLIS                    = "nonStopTimeoutMillis";
-  long                   DEFAULT_TIMEOUT_MILLIS                     = 60000;
+  enum NonStopWriteTimeoutBehavior {
+    EXCEPTION_ON_TIMEOUT, NO_OP
+  }
 
-  String                 NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR     = "nonStopImmutableOpTimeoutBehavior";
-  NonStopTimeoutBehavior DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR     = NonStopTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
+  String                      NON_STOP_TIMEOUT_MILLIS                    = "nonStopTimeoutMillis";
+  long                        DEFAULT_TIMEOUT_MILLIS                     = 60000;
 
-  String                 NON_STOP_MUTABLE_OP_TIMEOUT_BEHAVIOR       = "nonStopMutableOpTimeoutBehavior";
-  NonStopTimeoutBehavior DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR    = NonStopTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
+  String                      NON_STOP_READ_OP_TIMEOUT_BEHAVIOR          = "nonStopReadOpTimeoutBehavior";
+  NonStopReadTimeoutBehavior  DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR     = NonStopReadTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
 
-  String                 NON_STOP_ENABLED                           = "nonStopEnabled";
-  boolean                DEFAULT_NON_STOP_ENABLED                   = true;
+  String                      NON_STOP_WRITE_OP_TIMEOUT_BEHAVIOR         = "nonStopWritesOpTimeoutBehavior";
+  NonStopWriteTimeoutBehavior DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR    = NonStopWriteTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
 
-  String                 NON_STOP_IMMEDIATE_TIMEOUT_ENABLED         = "immediateTimeoutEnabled";
-  boolean                DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED = false;
+  String                      NON_STOP_ENABLED                           = "nonStopEnabled";
+  boolean                     DEFAULT_NON_STOP_ENABLED                   = true;
+
+  String                      NON_STOP_IMMEDIATE_TIMEOUT_ENABLED         = "immediateTimeoutEnabled";
+  boolean                     DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED = false;
 }
