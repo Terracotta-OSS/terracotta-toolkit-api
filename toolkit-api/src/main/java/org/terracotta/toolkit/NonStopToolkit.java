@@ -7,12 +7,9 @@ import org.terracotta.toolkit.nonstop.NonStopConfiguration;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationRegistry;
 
 public interface NonStopToolkit extends Toolkit {
-  /**
-   * 
-   */
-  void begin(NonStopConfiguration configuration);
+  void start(NonStopConfiguration configuration);
 
-  void finish();
+  void stop();
 
-  NonStopConfigurationRegistry getNonStopToolkitRegistry();
+  NonStopConfigurationRegistry getNonStopConfigurationToolkitRegistry();
 }

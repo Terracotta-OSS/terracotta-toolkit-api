@@ -3,6 +3,7 @@
  */
 package org.terracotta.toolkit.nonstop;
 
+import org.terracotta.toolkit.NonStopToolkit;
 import org.terracotta.toolkit.Toolkit;
 import org.terracotta.toolkit.ToolkitObjectType;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopReadTimeoutBehavior;
@@ -20,9 +21,12 @@ public class NonStopConfigurationBuilder {
   private String                      name                              = null;
   private String                      method                            = null;
 
-  public NonStopConfigurationBuilder nonStopTimeoutBehavior(NonStopReadTimeoutBehavior immutableOpBehavior,
-                                                            NonStopWriteTimeoutBehavior mutableOpBehavior) {
+  public NonStopConfigurationBuilder nonStopReadTimeoutBehavior(NonStopReadTimeoutBehavior immutableOpBehavior) {
     this.immutableOpNonStopTimeoutBehavior = immutableOpBehavior;
+    return this;
+  }
+
+  public NonStopConfigurationBuilder nonStopWriteTimeoutBehavior(NonStopWriteTimeoutBehavior mutableOpBehavior) {
     this.mutableOpNonStopTimeoutBehavior = mutableOpBehavior;
     return this;
   }
@@ -63,7 +67,8 @@ public class NonStopConfigurationBuilder {
     if (nonStopToolkitTypes == null) { throw new IllegalStateException(
                                                                        "Please set ToolkitObjectType for which this NonStopConfiguation needs to be registered"); }
 
-    NonStopConfigurationRegistry nonStopToolkitRegistry = toolkit.asNonStopToolkit().getNonStopToolkitRegistry();
+    NonStopConfigurationRegistry nonStopToolkitRegistry = ((NonStopToolkit) toolkit)
+        .getNonStopConfigurationToolkitRegistry();
     NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
                                                                mutableOpNonStopTimeoutBehavior, immediateTimeout);
 
@@ -98,13 +103,13 @@ public class NonStopConfigurationBuilder {
     }
 
     @Override
-    public NonStopReadTimeoutBehavior getImmutableOpNonStopTimeoutBehavior() {
+    public NonStopReadTimeoutBehavior getReadOpNonStopTimeoutBehavior() {
       String mode = getString(NonStopConfigurationFields.NON_STOP_READ_OP_TIMEOUT_BEHAVIOR);
       return NonStopReadTimeoutBehavior.valueOf(mode);
     }
 
     @Override
-    public NonStopWriteTimeoutBehavior getMutableOpNonStopTimeoutBehavior() {
+    public NonStopWriteTimeoutBehavior getWriteOpNonStopTimeoutBehavior() {
       String mode = getString(NonStopConfigurationFields.NON_STOP_WRITE_OP_TIMEOUT_BEHAVIOR);
       return NonStopWriteTimeoutBehavior.valueOf(mode);
     }

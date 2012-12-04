@@ -511,6 +511,4 @@ public interface Toolkit {
    * ignored.
    */
   void shutdown();
-
-  NonStopToolkit asNonStopToolkit();
 }

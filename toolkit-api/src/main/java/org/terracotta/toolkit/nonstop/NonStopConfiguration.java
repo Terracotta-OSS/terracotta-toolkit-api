@@ -13,12 +13,12 @@ public interface NonStopConfiguration {
   /**
    * @return Immutable Operations Non Stop Timeout Behavior associated with this {@link NonStopConfiguration}
    */
-  NonStopReadTimeoutBehavior getImmutableOpNonStopTimeoutBehavior();
+  NonStopReadTimeoutBehavior getReadOpNonStopTimeoutBehavior();
 
   /**
    * @return Mutable Operations Non Stop Timeout Behavior associated with this {@link NonStopConfiguration}
    */
-  NonStopWriteTimeoutBehavior getMutableOpNonStopTimeoutBehavior();
+  NonStopWriteTimeoutBehavior getWriteOpNonStopTimeoutBehavior();
 
   /**
    * @return time out in millis. This is the time out after which toolkit will attempt to abort the on going operation.
