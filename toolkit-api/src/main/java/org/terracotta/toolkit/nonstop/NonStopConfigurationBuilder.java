@@ -3,9 +3,6 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-import org.terracotta.toolkit.NonStopToolkit;
-import org.terracotta.toolkit.Toolkit;
-import org.terracotta.toolkit.ToolkitObjectType;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopReadTimeoutBehavior;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopWriteTimeoutBehavior;
 import org.terracotta.toolkit.store.ConfigurationImpl;
@@ -16,10 +13,6 @@ public class NonStopConfigurationBuilder {
   private long                        timeout                           = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
   private boolean                     isEnabled                         = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
   private boolean                     immediateTimeout                  = NonStopConfigurationFields.DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED;
-
-  private ToolkitObjectType[]         nonStopToolkitTypes               = null;
-  private String                      name                              = null;
-  private String                      method                            = null;
 
   public NonStopConfigurationBuilder nonStopReadTimeoutBehavior(NonStopReadTimeoutBehavior immutableOpBehavior) {
     this.immutableOpNonStopTimeoutBehavior = immutableOpBehavior;
@@ -36,59 +29,20 @@ public class NonStopConfigurationBuilder {
     return this;
   }
 
-  public NonStopConfigurationBuilder toolkitInstanceName(String nameParam) {
-    if (nameParam == null) { throw new IllegalArgumentException("name cannot be null"); }
-    this.name = nameParam;
-    return this;
-  }
-
   public NonStopConfigurationBuilder immediateTimeout(boolean enabled) {
     this.immediateTimeout = enabled;
     return this;
   }
 
-  public NonStopConfigurationBuilder methodName(String methodParam) {
-    if (methodParam == null) { throw new IllegalArgumentException("methodRegex cannot be null"); }
-    this.method = methodParam;
-    return this;
-  }
-
-  public NonStopConfigurationBuilder nonStopToolkitType(ToolkitObjectType... nonStopToolkitTypesParam) {
-    this.nonStopToolkitTypes = nonStopToolkitTypesParam;
-    return this;
-  }
 
   public NonStopConfigurationBuilder enable(boolean isEnabledParam) {
     this.isEnabled = isEnabledParam;
     return this;
   }
 
-  public void apply(Toolkit toolkit) {
-    if (nonStopToolkitTypes == null) { throw new IllegalStateException(
-                                                                       "Please set ToolkitObjectType for which this NonStopConfiguation needs to be registered"); }
-
-    NonStopConfigurationRegistry nonStopToolkitRegistry = ((NonStopToolkit) toolkit)
-        .getNonStopConfigurationToolkitRegistry();
-    NonStopConfiguration config = new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
+  public NonStopConfiguration build() {
+    return new NonStopToolkitConfigImpl(isEnabled, timeout, immutableOpNonStopTimeoutBehavior,
                                                                mutableOpNonStopTimeoutBehavior, immediateTimeout);
-
-    if (name == null && method == null) {
-      nonStopToolkitRegistry.registerForType(config, nonStopToolkitTypes);
-    } else if (name != null && method == null) {
-      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
-        nonStopToolkitRegistry.registerForInstance(config, name, nonStopToolkitType);
-      }
-    } else if (name == null && method != null) {
-      // TODO: verify that the method name exists for the ToolkitTypes
-      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
-        nonStopToolkitRegistry.registerForTypeMethod(config, method, nonStopToolkitType);
-      }
-    } else {
-      // TODO: verify that the method name exists for the ToolkitTypes
-      for (ToolkitObjectType nonStopToolkitType : nonStopToolkitTypes) {
-        nonStopToolkitRegistry.registerForInstanceMethod(config, method, name, nonStopToolkitType);
-      }
-    }
   }
 
   private static class NonStopToolkitConfigImpl extends ConfigurationImpl implements NonStopConfiguration {
