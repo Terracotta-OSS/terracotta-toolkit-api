@@ -511,4 +511,9 @@ public interface Toolkit {
    * ignored.
    */
   void shutdown();
+
+  /**
+   * Returns the {@link ToolkitFeature} implementation associated with the {@link Toolkit}.
+   */
+  <T extends ToolkitFeature> T getFeature(Class<T> clazz);
 }
