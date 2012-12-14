@@ -9,7 +9,7 @@ public interface NonStopConfigurationFields {
   }
 
   String                 NON_STOP_TIMEOUT_MILLIS                    = "nonStopTimeoutMillis";
-  long                   DEFAULT_TIMEOUT_MILLIS                     = 60000;
+  long                   DEFAULT_TIMEOUT_MILLIS                     = Long.MAX_VALUE;
 
   String                 NON_STOP_IMMUTABLE_OP_TIMEOUT_BEHAVIOR     = "nonStopImmutableOpTimeoutBehavior";
   NonStopTimeoutBehavior DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR     = NonStopTimeoutBehavior.EXCEPTION_ON_TIMEOUT;
