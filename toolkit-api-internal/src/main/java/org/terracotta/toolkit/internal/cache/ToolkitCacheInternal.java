@@ -68,7 +68,8 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   boolean containsLocalKey(Object key);
 
   /**
-   * Return the count of local entries.
+   * Return the count of local entries. <br>
+   * The count returned might not be very accurate if maxEntriesLocalHeap is set to small values.
    * 
    * @return count of local entries
    */
@@ -82,7 +83,7 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   Set<K> localKeySet();
 
   /**
-   * Return the on-heap size in bytes present locally in current node.
+   * Return the on-heap size in bytes present locally in current node.<br>
    * 
    * @return the on-heap size in bytes present locally in current node.
    */
@@ -96,7 +97,8 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   long localOffHeapSizeInBytes();
 
   /**
-   * Return the number of elements present locally on-heap in current node.
+   * Return the number of elements present locally on-heap in current node.<br>
+   * The count returned might not be very accurate if maxEntriesLocalHeap is set to small values.
    * 
    * @return the number of elements present locally on-heap in current node.
    */
