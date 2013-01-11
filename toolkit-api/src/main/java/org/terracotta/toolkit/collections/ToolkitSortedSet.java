@@ -4,7 +4,6 @@
 package org.terracotta.toolkit.collections;
 
 import org.terracotta.toolkit.Toolkit;
-import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitLockedObject;
 import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeException;
 
@@ -20,7 +19,6 @@ import java.util.SortedSet;
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}
  */
-public interface ToolkitSortedSet<E extends Comparable<? super E>> extends SortedSet<E>, ToolkitLockedObject,
-    Destroyable {
+public interface ToolkitSortedSet<E extends Comparable<? super E>> extends SortedSet<E>, ToolkitSet<E> {
   // no extra methods
 }
