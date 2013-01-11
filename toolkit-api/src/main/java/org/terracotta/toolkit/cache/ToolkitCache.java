@@ -72,25 +72,4 @@ public interface ToolkitCache<K, V> extends ToolkitStore<K, V> {
    * Removes a registered listener from this cache. Does nothing if the {@code listener} is not registered already
    */
   void removeListener(ToolkitCacheListener<K> listener);
-
-  /**
-   * Unpin all pinned keys
-   */
-  void unpinAll();
-
-  /**
-   * Check if the key is pinned
-   * 
-   * @param key the key to be checked
-   * @return {@code true} if the element is pinned, otherwise false
-   */
-  boolean isPinned(K key);
-
-  /**
-   * Mark the key as pinned or not pinned.
-   * 
-   * @param key the key to be pinned or not
-   * @param pinned true if the element should be pinned, false otherwise
-   */
-  void setPinned(K key, boolean pinned);
 }
