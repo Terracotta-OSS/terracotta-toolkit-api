@@ -5,9 +5,6 @@ package org.terracotta.toolkit.internal.store;
 
 import org.terracotta.toolkit.cache.ToolkitCacheConfigBuilder;
 
-/**
- * TODO FINAL ANYONE ?!
- */
 public class ToolkitCacheConfigBuilderInternal extends ToolkitCacheConfigBuilder {
 
   private String localStoreManagerName;
