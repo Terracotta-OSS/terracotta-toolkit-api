@@ -9,8 +9,7 @@ import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitObject;
 import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeException;
-import org.terracotta.toolkit.search.QueryBuilder;
-import org.terracotta.toolkit.search.attribute.ToolkitAttributeExtractor;
+import org.terracotta.toolkit.search.SearchableMap;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,14 +18,23 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * A Key-Value store used for storing key-value mappings. No eviction can happen on a Store. A key-value store can be
- * configured using various configs available in {@link ToolkitStoreConfigFields}. Consult
+ * configured using various configs available in {@link ToolkitConfigFields}. Consult
  * {@link Toolkit#getStore(String, Configuration, Class)} for more info on various configs.
  * <p>
  * Consult the {@linkplain Toolkit Toolkit class level docs} for more info on behavior regarding destroy.
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}.
  */
-public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject {
+public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject, SearchableMap<K, V> {
+  /**
+   * Check if the value is contained in the store. Optional operation, some implementation may throw
+   * {@code UnsupportedOperationException}
+   * 
+   * @return Check if the value is contained in the store.
+   */
+  @Override
+  public boolean containsValue(Object value);
+
   /**
    * Behaves the same as the standard {@link #remove(Object)} method except that the previous value is not returned.
    * This may provide significant performance improvements when the old value is not required.
@@ -67,15 +75,6 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   void setConfigField(String name, Serializable value);
 
   /**
-   * Check if the value is contained in the store. Optional operation, some implementation may throw
-   * {@code UnsupportedOperationException}
-   * 
-   * @return Check if the value is contained in the store.
-   */
-  @Override
-  public boolean containsValue(Object value);
-
-  /**
    * Creates a {@link ToolkitReadWriteLock} for the given key.
    * <p>
    * <b>NOTE</b>: {@link ToolkitObject#getName()} on the {@code ToolkitReadWriteLock},
@@ -86,15 +85,4 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    *         key
    */
   ToolkitReadWriteLock createLockForKey(K key);
-
-  /**
-   * Set indexed attribute extractor. This store is considered searchable if this method has been called at least once.
-   */
-  void setAttributeExtractor(ToolkitAttributeExtractor<K, V> attrExtractor);
-
-  /**
-   * Create a new query builder to construct a search query tied to this store
-   */
-  QueryBuilder createQueryBuilder();
-
 }

@@ -3,8 +3,8 @@
  */
 package org.terracotta.toolkit.config;
 
-import org.terracotta.toolkit.cache.ToolkitCacheConfigBuilder;
-import org.terracotta.toolkit.store.ToolkitStoreConfigBuilder;
+import org.terracotta.toolkit.builder.ToolkitCacheConfigBuilder;
+import org.terracotta.toolkit.builder.ToolkitStoreConfigBuilder;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;

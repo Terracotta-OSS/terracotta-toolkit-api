@@ -1,11 +1,12 @@
 /*
  * All content copyright Terracotta, Inc., unless otherwise indicated. All rights reserved.
  */
-package org.terracotta.toolkit.nonstop;
+package org.terracotta.toolkit.builder;
 
+import org.terracotta.toolkit.nonstop.NonStopConfiguration;
+import org.terracotta.toolkit.nonstop.NonStopConfigurationFields;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopReadTimeoutBehavior;
 import org.terracotta.toolkit.nonstop.NonStopConfigurationFields.NonStopWriteTimeoutBehavior;
-import org.terracotta.toolkit.store.ConfigurationImpl;
 
 public class NonStopConfigurationBuilder {
   private NonStopReadTimeoutBehavior  immutableOpNonStopTimeoutBehavior = NonStopConfigurationFields.DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR;

@@ -4,6 +4,7 @@
 package org.terracotta.toolkit.nonstop;
 
 import org.terracotta.toolkit.ToolkitObjectType;
+import org.terracotta.toolkit.builder.NonStopConfigurationBuilder;
 import org.terracotta.toolkit.object.ToolkitObject;
 
 /**

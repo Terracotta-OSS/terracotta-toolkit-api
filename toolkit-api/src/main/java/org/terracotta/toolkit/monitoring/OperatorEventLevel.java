@@ -10,6 +10,5 @@ import org.terracotta.toolkit.tck.TCKStrict;
  */
 @TCKStrict
 public enum OperatorEventLevel {
-  INFO, WARN, DEBUG, ERROR, CRITICAL
-
+  DEBUG, INFO, WARN, ERROR, CRITICAL
 }

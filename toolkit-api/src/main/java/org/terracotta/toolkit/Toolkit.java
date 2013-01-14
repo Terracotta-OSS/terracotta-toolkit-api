@@ -5,7 +5,6 @@ package org.terracotta.toolkit;
 
 import org.terracotta.toolkit.api.ToolkitFactoryService;
 import org.terracotta.toolkit.cache.ToolkitCache;
-import org.terracotta.toolkit.cache.ToolkitCacheConfigFields;
 import org.terracotta.toolkit.cluster.ClusterInfo;
 import org.terracotta.toolkit.collections.ToolkitBlockingQueue;
 import org.terracotta.toolkit.collections.ToolkitList;
@@ -24,8 +23,8 @@ import org.terracotta.toolkit.monitoring.OperatorEventLevel;
 import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitLockedObject;
 import org.terracotta.toolkit.object.ToolkitObject;
+import org.terracotta.toolkit.store.ToolkitConfigFields;
 import org.terracotta.toolkit.store.ToolkitStore;
-import org.terracotta.toolkit.store.ToolkitStoreConfigFields;
 
 /**
  * A toolkit that provides various data-structures. A {@code Toolkit} can be constructed using one of the factory
@@ -81,7 +80,7 @@ public interface Toolkit {
    * Returns an already created {@link ToolkitStore} if one exists for the given 'name' parameter, otherwise creates one
    * using the 'configuration' parameter and returns it. Subsequent calls to getStore() with same name will return same
    * key-value store. The {@code configuration} parameter can take various config. Keys in the mapping can take values
-   * declared in {@link ToolkitStoreConfigFields}. Behavior of the various configs are detailed in below table:
+   * declared in {@link ToolkitConfigFields}. Behavior of the various configs are detailed in below table:
    * <blockquote>
    * <table border="0" cellspacing="3" cellpadding="0">
    * <tr bgcolor="#ccccff">
@@ -408,7 +407,7 @@ public interface Toolkit {
    * Returns an already created {@link ToolkitCache} if one exists for the given {@code name} parameter, otherwise
    * creates one using the {@code configuration} parameter and returns it. Subsequent calls with same name will return
    * same cache. The {@code configuration} parameter can take various config. Keys in the mapping can take values
-   * declared in {@link ToolkitStoreConfigFields} or {@link ToolkitCacheConfigFields}. Refer to {@link
+   * declared in {@link ToolkitConfigFields} or {@link ToolkitCacheConfigFields}. Refer to {@link
    * Toolkit#getStore(String, Configuration, Class<V>)} for behavior of various key-value store config fields. Behavior
    * of the other cache configs are detailed in below table: <blockquote>
    * <table border="0" cellspacing="3" cellpadding="0">

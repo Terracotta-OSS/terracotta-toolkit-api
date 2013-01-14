@@ -3,7 +3,7 @@
  */
 package org.terracotta.toolkit.internal.store;
 
-public interface ToolkitStoreConfigFieldsInternal {
+public interface ConfigFieldsInternal {
   /**
    * Local store Manager name
    */

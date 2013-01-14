@@ -3,18 +3,19 @@
  */
 package org.terracotta.toolkit.store;
 
+import org.terracotta.toolkit.builder.ToolkitStoreConfigBuilder;
+import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.tck.TCKStrict;
 
 /**
- * Details of Configuration fields used to configure {@link ToolkitStore}
+ * Details of Configuration fields used to configure {@link ToolkitStore} & {@link ToolkitCache}
  * 
- * @see Toolkit#getStore(String, Configuration, Class<V>)
- * @see ToolkitStoreConfigBuilder
+ * @see ToolkitStoreConfigBuilder & ToolkitCacheConfigBuilder
  */
-public interface ToolkitStoreConfigFields {
+public interface ToolkitConfigFields {
 
   /**
-   * Enum type representing valid values for {@link ToolkitStoreConfigFields#CONSISTENCY_FIELD_NAME} name mapping. Use
+   * Enum type representing valid values for {@link ToolkitConfigFields#CONSISTENCY_FIELD_NAME} name mapping. Use
    * {@link Consistency#name()}
    */
   @TCKStrict
@@ -35,7 +36,7 @@ public interface ToolkitStoreConfigFields {
 
   /**
    * Specifies concurrency of the key value Store. Valid values are positive integers. Default value is
-   * {@link ToolkitStoreConfigFields#DEFAULT_CONCURRENCY}. Paramater name in config
+   * {@link ToolkitConfigFields#DEFAULT_CONCURRENCY}. Paramater name in config
    */
   String  CONCURRENCY_FIELD_NAME             = "concurrency";
   int     DEFAULT_CONCURRENCY                = 256;
@@ -87,4 +88,45 @@ public interface ToolkitStoreConfigFields {
    */
   String  COPY_ON_READ_ENABLED_FIELD_NAME    = "copyOnReadEnabled";
   boolean DEFAULT_COPY_ON_READ_ENABLED       = false;
+
+  /**
+   * Enum type representing valid values for {@link ToolkitConfigFields#PINNING_STORE_FIELD_NAME} name mapping. Use
+   * {@link PinningStore#name()}
+   */
+  @TCKStrict
+  public enum PinningStore {
+    INCACHE, LOCALHEAP, LOCALMEMORY, NONE
+  }
+
+  /**
+   * Time to idle (in seconds) for a Cache<br>
+   * 0 means Infinite.<br>
+   * Valid Values are positive integers
+   */
+  String MAX_TTI_SECONDS_FIELD_NAME = "maxTTISeconds";
+  int    DEFAULT_MAX_TTI_SECONDS    = 0;
+  int    NO_MAX_TTI_SECONDS         = DEFAULT_MAX_TTI_SECONDS;
+
+  /**
+   * Time to live (in seconds) for a Cache<br>
+   * 0 means Infinite.<br>
+   * Valid Values are positive integers
+   */
+  String MAX_TTL_SECONDS_FIELD_NAME = "maxTTLSeconds";
+  int    NO_MAX_TTL_SECONDS         = 0;
+  int    DEFAULT_MAX_TTL_SECONDS    = NO_MAX_TTL_SECONDS;
+
+  /**
+   * Total Max count (capacity) allowed for this cache<br>
+   * 0 means Infinite.<br>
+   * Valid Values are positive integers
+   */
+  String MAX_TOTAL_COUNT_FIELD_NAME = "maxTotalCount";
+  int    DEFAULT_MAX_TOTAL_COUNT    = 0;
+
+  /**
+   * Pinning store of the Map. Valid values are one of {@link PinningStore#getConfigString()}
+   */
+  String PINNING_STORE_FIELD_NAME   = "pinningStore";
+  String DEFAULT_PINNING_STORE      = PinningStore.NONE.name();
 }
