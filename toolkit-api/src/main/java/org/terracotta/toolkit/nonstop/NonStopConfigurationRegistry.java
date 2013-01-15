@@ -48,6 +48,15 @@ public interface NonStopConfigurationRegistry {
                                  ToolkitObjectType type);
 
   /**
+   * Register a different timeout for search operations.<br>
+   * Please note that the rest of the {@link NonStopConfiguration} is used which was registered for
+   * {@link ToolkitObject} instance.
+   * 
+   * @throws IllegalArgumentException if timeout <= 0
+   */
+  void registerTimeoutForCacheSearch(long timeout, String instanceName, ToolkitObjectType objectType);
+
+  /**
    * @return {@link NonStopConfiguration} for the {@link ToolkitObjectType}
    */
   NonStopConfiguration getConfigForType(ToolkitObjectType type);
@@ -67,6 +76,12 @@ public interface NonStopConfigurationRegistry {
    *         passed in as param.
    */
   NonStopConfiguration getConfigForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
+
+  /**
+   * @return the timeout registered for search operations.<br>
+   *         It will return -1 no timeout has been set
+   */
+  long getTimeoutForCacheSearch(String instanceName, ToolkitObjectType objectType);
 
   /**
    * De-register the {@link NonStopConfiguration} associated with the {@link ToolkitObjectType}
@@ -90,4 +105,9 @@ public interface NonStopConfigurationRegistry {
    * instance name is passed in as param.
    */
   NonStopConfiguration deregisterForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
+
+  /**
+   * De-register the timeout set for search.
+   */
+  long deregisterTimeoutForCacheSearch(String instanceName, ToolkitObjectType objectType);
 }
