@@ -80,8 +80,7 @@ public interface Toolkit {
    * Returns an already created {@link ToolkitStore} if one exists for the given 'name' parameter, otherwise creates one
    * using the 'configuration' parameter and returns it. Subsequent calls to getStore() with same name will return same
    * key-value store. The {@code configuration} parameter can take various config. Keys in the mapping can take values
-   * declared in {@link ToolkitConfigFields}. Behavior of the various configs are detailed in below table:
-   * <blockquote>
+   * declared in {@link ToolkitConfigFields}. Behavior of the various configs are detailed in below table: <blockquote>
    * <table border="0" cellspacing="3" cellpadding="0">
    * <tr bgcolor="#ccccff">
    * <th rowspan="2">Configuration Field</th>
@@ -498,21 +497,19 @@ public interface Toolkit {
   <V> ToolkitCache<String, V> getCache(String name, Class<V> klazz);
 
   /**
-   * Returns true if the capability is enabled and can be used. Otherwise returns false
-   * 
-   * @param capability capability which needs to be checked
-   * @return true if the capability is enabled and can be used. Otherwise false
-   */
-  boolean isCapabilityEnabled(String capability);
-
-  /**
    * Shut down toolkit and release resources associated with the toolkit. Multiple calls do not have any effect and are
    * ignored.
    */
   void shutdown();
 
   /**
-   * Returns the {@link ToolkitFeature} implementation associated with the {@link Toolkit}.
+   * Returns the {@link ToolkitFeature} implementation identified by <code>type</code> associated with the
+   * {@link Toolkit}.
+   * 
+   * @param type the type identifying the feature.
+   * @return returns the feature identified by <code>type</code>.
+   * @see ToolkitFeatureType
    */
-  <T extends ToolkitFeature> T getFeature(Class<T> clazz);
+  <T extends ToolkitFeature> T getFeature(ToolkitFeatureType<T> type);
+
 }

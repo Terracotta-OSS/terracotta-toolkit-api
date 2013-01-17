@@ -4,6 +4,8 @@
 package org.terracotta.toolkit.internal;
 
 import org.terracotta.toolkit.Toolkit;
+import org.terracotta.toolkit.ToolkitFeature;
+import org.terracotta.toolkit.ToolkitFeatureTypeInternal;
 import org.terracotta.toolkit.concurrent.locks.ToolkitLock;
 import org.terracotta.toolkit.internal.concurrent.locks.ToolkitLockTypeInternal;
 
@@ -38,4 +40,14 @@ public interface ToolkitInternal extends Toolkit {
    * Return properties of this toolkit
    */
   ToolkitProperties getProperties();
+
+  /**
+   * Returns the {@link ToolkitFeature} implementation identified by <code>type</code> associated with the
+   * {@link Toolkit}.
+   * 
+   * @param type the type identifying the feature.
+   * @return returns the feature identified by <code>type</code>.
+   * @see ToolkitFeatureTypeInternal
+   */
+  <T extends ToolkitFeature> T getFeature(ToolkitFeatureTypeInternal<T> type);
 }

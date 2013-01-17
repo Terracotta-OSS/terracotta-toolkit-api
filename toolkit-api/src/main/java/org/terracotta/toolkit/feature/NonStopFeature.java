@@ -1,11 +1,13 @@
 /*
  * All content copyright Terracotta, Inc., unless otherwise indicated. All rights reserved.
  */
-package org.terracotta.toolkit.nonstop;
+package org.terracotta.toolkit.feature;
 
 import org.terracotta.toolkit.ToolkitFeature;
+import org.terracotta.toolkit.nonstop.NonStopConfiguration;
+import org.terracotta.toolkit.nonstop.NonStopConfigurationRegistry;
 
-public interface NonStop extends ToolkitFeature {
+public interface NonStopFeature extends ToolkitFeature {
   /**
    * Start non stop operations
    */
