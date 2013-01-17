@@ -125,7 +125,7 @@ public interface ToolkitConfigFields {
   int    DEFAULT_MAX_TOTAL_COUNT    = 0;
 
   /**
-   * Pinning store of the Map. Valid values are one of {@link PinningStore#getConfigString()}
+   * Pinning store of the Map.
    */
   String PINNING_STORE_FIELD_NAME   = "pinningStore";
   String DEFAULT_PINNING_STORE      = PinningStore.NONE.name();

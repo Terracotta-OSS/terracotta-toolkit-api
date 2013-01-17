@@ -3,13 +3,13 @@
  */
 package org.terracotta.toolkit.cache;
 
-import org.terracotta.toolkit.Toolkit;
 import org.terracotta.toolkit.concurrent.locks.ToolkitReadWriteLock;
 import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.object.Destroyable;
 import org.terracotta.toolkit.object.ToolkitObject;
 import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeException;
 import org.terracotta.toolkit.search.SearchableMap;
+import org.terracotta.toolkit.store.ToolkitConfigFields;
 import org.terracotta.toolkit.store.ToolkitStore;
 
 import java.io.Serializable;
@@ -20,10 +20,10 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * A toolkit cache. Its extends from {@link ToolkitStore} and has additional functionalities as a cache. The main
  * difference between a store and a cache is that eviction can happen on caches, while it won't in case of key-value
- * stores. A toolkit cache can be configured using various configs available in {@link ToolkitCacheConfigFields}.
- * Consult {@link Toolkit#getCache(String, Configuration, Class<V>)} for more info on various configs.
+ * stores. A toolkit cache can be configured using various configs available in {@link ToolkitConfigFields}. Consult
+ * {@link org.terracotta.toolkit.Toolkit#getCache(String, Configuration, Class)} for more info on various configs.
  * <p>
- * Consult the {@linkplain Toolkit Toolkit class level docs} for more info on behavior regarding destroy.
+ * Consult the {@link org.terracotta.toolkit.Toolkit class level docs} for more info on behavior regarding destroy.
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}
  */

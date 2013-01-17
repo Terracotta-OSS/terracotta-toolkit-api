@@ -19,7 +19,6 @@ public final class ToolkitStoreConfigBuilder extends AbstractToolkitStoreCacheCo
   /**
    * Sets the concurrency config to the new value and returns {@code this}
    * 
-   * @param concurrency new value of concurrency.
    * @return same instance
    * @throws IllegalArgumentException for non-positive <tt>concurrency</tt> params
    */

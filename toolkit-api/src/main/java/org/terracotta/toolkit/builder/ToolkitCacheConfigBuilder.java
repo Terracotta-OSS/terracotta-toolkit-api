@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  * A helper to build a {@link Configuration} for {@link ToolkitCache}. Builds up configuration based on
- * {@link ToolkitCacheConfigFields}
+ * {@link ToolkitConfigFields}
  */
 public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheConfigBuilder {
 
@@ -25,7 +25,6 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   /**
    * Sets the concurrency config to the new value and returns {@code this}
    * 
-   * @param concurrency new value of concurrency.
    * @return same instance
    * @throws IllegalArgumentException for non-positive <tt>concurrency</tt> params
    */
@@ -212,8 +211,8 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   /**
    * Builds a {@link Configuration} for {@link ToolkitCache} by filling in appropriate mappings. Only adds mappings for
    * values which were set explicitly in this builder, and doesn’t fills in default values in the returned config.
-   * Consult {@link ToolkitCacheConfigFields}, {@link ToolkitConfigFields} for the various configs supported and its
-   * default values
+   * Consult {@link ToolkitConfigFields}, {@link ToolkitConfigFields} for the various configs supported and its default
+   * values
    */
   @Override
   public Configuration build() {

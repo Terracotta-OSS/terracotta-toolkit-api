@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 class AbstractToolkitStoreCacheConfigBuilder {
-  private int                                   concurrency;
-  private Consistency                           consistency;
-  private long                                  maxBytesLocalHeap;
-  private long                                  maxBytesLocalOffheap;
-  private int                                   maxCountLocalHeap;
-  private boolean                               localCacheEnabled;
-  private boolean                               offheapEnabled;
+  private int                                 concurrency;
+  private Consistency                         consistency;
+  private long                                maxBytesLocalHeap;
+  private long                                maxBytesLocalOffheap;
+  private int                                 maxCountLocalHeap;
+  private boolean                             localCacheEnabled;
+  private boolean                             offheapEnabled;
 
-  private boolean                               compressionEnabled;
-  private boolean                               copyOnReadEnabled;
+  private boolean                             compressionEnabled;
+  private boolean                             copyOnReadEnabled;
 
   private final ArrayList<ConfigFieldMapping> fieldMappings = new ArrayList<ConfigFieldMapping>();
 
@@ -119,8 +119,6 @@ class AbstractToolkitStoreCacheConfigBuilder {
 
   /**
    * Sets the {@link Consistency} of the key-value store
-   * 
-   * @return same instance
    */
   protected void setConsistency(Consistency consistencyParam) {
     this.consistency = consistencyParam;
@@ -130,11 +128,9 @@ class AbstractToolkitStoreCacheConfigBuilder {
   /**
    * Sets the maxBytesLocalHeap
    * 
-   * @return same instance
    * @throws IllegalArgumentException for negative values
    */
-  protected void setMaxBytesLocalHeap(long maxBytesLocalHeapParam)
-      throws IllegalArgumentException {
+  protected void setMaxBytesLocalHeap(long maxBytesLocalHeapParam) throws IllegalArgumentException {
 
     this.maxBytesLocalHeap = maxBytesLocalHeapParam;
     addFieldToApply(ToolkitConfigFields.MAX_BYTES_LOCAL_HEAP_FIELD_NAME, this.maxBytesLocalHeap);
@@ -143,11 +139,9 @@ class AbstractToolkitStoreCacheConfigBuilder {
   /**
    * Sets the max bytes local offheap
    * 
-   * @return same instance
    * @throws IllegalArgumentException for negative values
    */
-  protected void setMaxBytesLocalOffheap(long maxBytesLocalOffheapParam)
-      throws IllegalArgumentException {
+  protected void setMaxBytesLocalOffheap(long maxBytesLocalOffheapParam) throws IllegalArgumentException {
     this.maxBytesLocalOffheap = maxBytesLocalOffheapParam;
     addFieldToApply(ToolkitConfigFields.MAX_BYTES_LOCAL_OFFHEAP_FIELD_NAME, this.maxBytesLocalOffheap);
   }
@@ -155,19 +149,15 @@ class AbstractToolkitStoreCacheConfigBuilder {
   /**
    * Sets the max count local heap
    * 
-   * @return same instance
    * @throws IllegalArgumentException for negative values
    */
-  protected void setMaxCountLocalHeap(int maxCountLocalHeapParam)
-      throws IllegalArgumentException {
+  protected void setMaxCountLocalHeap(int maxCountLocalHeapParam) throws IllegalArgumentException {
     this.maxCountLocalHeap = maxCountLocalHeapParam;
     addFieldToApply(ToolkitConfigFields.MAX_COUNT_LOCAL_HEAP_FIELD_NAME, this.maxCountLocalHeap);
   }
 
   /**
    * Sets offheap enabled
-   * 
-   * @return same instance
    */
   protected void setOffheapEnabled(boolean offheapEnabledParam) {
     this.offheapEnabled = offheapEnabledParam;
@@ -176,8 +166,6 @@ class AbstractToolkitStoreCacheConfigBuilder {
 
   /**
    * Sets local cache enabled
-   * 
-   * @return same instance
    */
   protected void setLocalCacheEnabled(boolean localCacheEnabledParam) {
     this.localCacheEnabled = localCacheEnabledParam;
@@ -186,8 +174,6 @@ class AbstractToolkitStoreCacheConfigBuilder {
 
   /**
    * Sets compression enabled
-   * 
-   * @return same instance
    */
   protected void setCompressionEnabled(boolean compressionEnabledParam) {
     this.compressionEnabled = compressionEnabledParam;
@@ -196,8 +182,6 @@ class AbstractToolkitStoreCacheConfigBuilder {
 
   /**
    * Sets copy on read enabled
-   * 
-   * @return same instance
    */
   protected void setCopyOnReadEnabled(boolean copyOnReadEnabledParam) {
     this.copyOnReadEnabled = copyOnReadEnabledParam;
@@ -224,11 +208,11 @@ class AbstractToolkitStoreCacheConfigBuilder {
   /**
    * Apply changes of this builder to the {@link ToolkitStore} parameter. The changes are the ones between each apply.
    * <p>
-   * If the store's configuration has {@link ToolkitConfigFields#MAX_BYTES_LOCAL_HEAP_FIELD_NAME} property set
-   * then {@link AbstractToolkitStoreCacheConfigBuilder#maxCountLocalHeap(long)} would result in an error.
+   * If the store's configuration has {@link ToolkitConfigFields#MAX_BYTES_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link AbstractToolkitStoreCacheConfigBuilder#setMaxCountLocalHeap(int)} would result in an error.
    * <p>
-   * If the store's configuration has {@link ToolkitConfigFields#MAX_COUNT_LOCAL_HEAP_FIELD_NAME} property set
-   * then {@link AbstractToolkitStoreCacheConfigBuilder#maxBytesLocalHeap(long)} would result in an error.
+   * If the store's configuration has {@link ToolkitConfigFields#MAX_COUNT_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link AbstractToolkitStoreCacheConfigBuilder#setMaxBytesLocalHeap(long)} would result in an error.
    */
   public void apply(ToolkitStore store) {
     for (Iterator<ConfigFieldMapping> iter = fieldMappings.iterator(); iter.hasNext();) {
@@ -241,11 +225,11 @@ class AbstractToolkitStoreCacheConfigBuilder {
   /**
    * Apply changes of this builder to the {@link ToolkitStore} parameter. The changes are the ones between each apply.
    * <p>
-   * If the store's configuration has {@link ToolkitConfigFields#MAX_BYTES_LOCAL_HEAP_FIELD_NAME} property set
-   * then {@link AbstractToolkitStoreCacheConfigBuilder#maxCountLocalHeap(long)} would result in an error.
+   * If the store's configuration has {@link ToolkitConfigFields#MAX_BYTES_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link AbstractToolkitStoreCacheConfigBuilder#setMaxCountLocalHeap(int)} would result in an error.
    * <p>
-   * If the store's configuration has {@link ToolkitConfigFields#MAX_COUNT_LOCAL_HEAP_FIELD_NAME} property set
-   * then {@link AbstractToolkitStoreCacheConfigBuilder#maxBytesLocalHeap(long)} would result in an error.
+   * If the store's configuration has {@link ToolkitConfigFields#MAX_COUNT_LOCAL_HEAP_FIELD_NAME} property set then
+   * {@link AbstractToolkitStoreCacheConfigBuilder#setMaxBytesLocalHeap(long)} would result in an error.
    */
   public void apply(ToolkitCache cache) {
     for (Iterator<ConfigFieldMapping> iter = fieldMappings.iterator(); iter.hasNext();) {

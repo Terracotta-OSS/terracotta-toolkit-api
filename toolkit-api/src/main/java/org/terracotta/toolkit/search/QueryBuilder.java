@@ -9,7 +9,7 @@ import org.terracotta.toolkit.search.expression.Clause;
  * This class encapsulates query building functionality. It can be thought of as a reusable factory to create queries
  * from given specifications. Once created, however, search queries can no longer be modified.
  * 
- * @see {@link ToolkitSearchQuery}
+ * @see ToolkitSearchQuery
  */
 public interface QueryBuilder {
 

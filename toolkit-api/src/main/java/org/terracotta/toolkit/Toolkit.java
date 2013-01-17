@@ -31,18 +31,18 @@ import org.terracotta.toolkit.store.ToolkitStore;
  * methods provided in {@code ToolkitFactory}. See {@link ToolkitFactory} for more details on how to instantiate a
  * toolkit.
  * <p>
- * All object instances constructed using the toolkit are always identified by a {@link ToolkitObject#getName() name}
- * and a {@link ToolkitObject#getType() toolkit object type}. Some instances can be destroyed, and in such cases the
- * objects will also be instance of {@link Destroyable}. Some instances also perform lock-based mutate and read
- * operations based on a read-write lock associated with the instance, these are instances of
- * {@link ToolkitLockedObject}. There are certain optional features in the toolkit denoted by {@link ToolkitCapability}.
- * Certain implementations can support these features while some can throw {@code UnsupportedOperationException}. Users
- * can use {@link #isCapabilityEnabled(ToolkitCapability)} at runtime to query whether the specific feature is enabled
- * or not. Some toolkit implementations can be distributed in nature, for example Terracotta clustered toolkits, and in
- * such cases can support the {@link #getClusterInfo()} api. Toolkit implementations that are not distributed in nature
- * can throw {@code UnsupportedOperationException} for the same. Toolkit implementors can also choose to implement
- * operator events, for easy monitoring, and support the {@link #fireOperatorEvent(OperatorEventLevel, String, String)}
- * or otherwise throw {@code UnsupportedOperationException}.
+ * All object instances constructed using the toolkit are always identified by a {@link ToolkitObject#getName() name}.
+ * Some instances can be destroyed, and in such cases the objects will also be instance of {@link Destroyable}. Some
+ * instances also perform lock-based mutate and read operations based on a read-write lock associated with the instance,
+ * these are instances of {@link ToolkitLockedObject}. There are certain optional features in the toolkit denoted by
+ * {@link ToolkitCapability}. Certain implementations can support these features while some can throw
+ * {@code UnsupportedOperationException}. Users can use {@link #isCapabilityEnabled(String)} at runtime to query whether
+ * the specific feature is enabled or not. Some toolkit implementations can be distributed in nature, for example
+ * Terracotta clustered toolkits, and in such cases can support the {@link #getClusterInfo()} api. Toolkit
+ * implementations that are not distributed in nature can throw {@code UnsupportedOperationException} for the same.
+ * Toolkit implementors can also choose to implement operator events, for easy monitoring, and support the
+ * {@link #fireOperatorEvent(OperatorEventLevel, String, String)} or otherwise throw
+ * {@code UnsupportedOperationException}.
  * <p>
  * <h2>Destroy Behavior</h2> Toolkit objects that can be destroyed are instances of {@link Destroyable} and once
  * destroyed cannot be reused. Attempting to use an object after getting destroyed will result in
@@ -262,7 +262,7 @@ public interface Toolkit {
    * Get or create a toolkit blocking queue for the given {@code name}. This is same as calling
    * {@code Toolkit.getBlockingQueue(name, Integer.MAX_VALUE)}
    * <p>
-   * See {@link #getBlockingQueue(String, int, Class<E>)}.
+   * See {@link #getBlockingQueue(String, int, Class)}.
    * <p>
    * Implementations may choose to use the concrete class references to help enforce type safety of the returned data
    * structure. Users can pass {@code null} class references in order to disable any implementation specific type
@@ -406,9 +406,9 @@ public interface Toolkit {
    * Returns an already created {@link ToolkitCache} if one exists for the given {@code name} parameter, otherwise
    * creates one using the {@code configuration} parameter and returns it. Subsequent calls with same name will return
    * same cache. The {@code configuration} parameter can take various config. Keys in the mapping can take values
-   * declared in {@link ToolkitConfigFields} or {@link ToolkitCacheConfigFields}. Refer to {@link
-   * Toolkit#getStore(String, Configuration, Class<V>)} for behavior of various key-value store config fields. Behavior
-   * of the other cache configs are detailed in below table: <blockquote>
+   * declared in {@link ToolkitConfigFields} or {@link ToolkitConfigFields}. Refer to
+   * {@link Toolkit#getStore(String, Configuration, Class)} for behavior of various key-value store config fields.
+   * Behavior of the other cache configs are detailed in below table: <blockquote>
    * <table border="0" cellspacing="3" cellpadding="0">
    * <tr bgcolor="#ccccff">
    * <th rowspan="2">Configuration Field</th>

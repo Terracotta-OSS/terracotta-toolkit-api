@@ -187,7 +187,7 @@ public enum ToolkitAttributeType {
   private static final Map<Class, ToolkitAttributeType> MAPPINGS = new HashMap<Class, ToolkitAttributeType>();
 
   /**
-   * Get the appropriate @{link {@link AttributeType} enum for the given object value.
+   * Get the appropriate {@link ToolkitAttributeType} enum for the given object value.
    * 
    * @param name the attribute name (only meaningful to message if exception thrown)
    * @param value the value to lookup the type for
