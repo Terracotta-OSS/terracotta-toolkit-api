@@ -20,6 +20,11 @@ public interface NonStopFeature extends ToolkitFeature {
   void finish();
 
   /**
+   * returns true If a nonstop operation was started and has timed out.
+   */
+  boolean isTimedOut();
+
+  /**
    * get Registry for registering non stop configurations
    */
   NonStopConfigurationRegistry getNonStopConfigurationRegistry();
