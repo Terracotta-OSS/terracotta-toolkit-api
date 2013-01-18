@@ -33,7 +33,8 @@ public interface ToolkitFactoryService {
    * @param type the type of the toolkit
    * @param subName subName for the toolkit
    * @return true if implementation can handle the given toolkit 'type' and 'subName', otherwise false
-   * @see {@link ToolkitFactory#createToolkit(String)}, {@link ToolkitFactory#createToolkit(String, Properties)}
+   * @see ToolkitFactory#createToolkit(String)
+   * @see ToolkitFactory#createToolkit(String, Properties)
    */
   boolean canHandleToolkitType(String type, String subName);
 
@@ -47,7 +48,8 @@ public interface ToolkitFactoryService {
    * @param properties contains user configured properties. Can be null.
    * @return a toolkit instance
    * @throws ToolkitInstantiationException if the type cannot be handled or if there is any error
-   * @see {@link ToolkitFactory#createToolkit(String)}, {@link ToolkitFactory#createToolkit(String, Properties)}
+   * @see ToolkitFactory#createToolkit(String)
+   * @see ToolkitFactory#createToolkit(String, Properties)
    */
   Toolkit createToolkit(String type, String subName, Properties properties) throws ToolkitInstantiationException;
 }
