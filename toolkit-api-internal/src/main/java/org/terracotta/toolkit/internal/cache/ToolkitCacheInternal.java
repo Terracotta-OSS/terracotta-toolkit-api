@@ -134,4 +134,5 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   public void disposeLocally();
 
   public void removeAll(Set<K> keys);
+
 }
