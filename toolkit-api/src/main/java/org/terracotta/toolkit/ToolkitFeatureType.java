@@ -6,7 +6,6 @@ package org.terracotta.toolkit;
 import org.terracotta.toolkit.feature.NonStopFeature;
 import org.terracotta.toolkit.feature.OffheapFeature;
 import org.terracotta.toolkit.feature.SearchFeature;
-import org.terracotta.toolkit.feature.SerializationFeature;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +36,6 @@ public final class ToolkitFeatureType<T extends ToolkitFeature> {
    * Nonstop feature
    */
   public static final ToolkitFeatureType<NonStopFeature>       NONSTOP       = define(NonStopFeature.class);
-  /**
-   * Serialization feature
-   */
-  public static final ToolkitFeatureType<SerializationFeature> SERIALIZATION = define(SerializationFeature.class);
 
   /**
    * Returns list of all features that a toolkit can support.
