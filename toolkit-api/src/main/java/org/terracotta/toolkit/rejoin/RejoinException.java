@@ -3,7 +3,14 @@
  */
 package org.terracotta.toolkit.rejoin;
 
-public class RejoinException extends RuntimeException {
+import org.terracotta.toolkit.ToolkitRuntimeException;
+
+/**
+ * This exception is thrown when data-structures don't work anymore because a rejoin happened. For example, sublists in
+ * ToolkitList, iterators etc won't work after rejoin. This exception is also thrown when threads are inside the
+ * platform but rejoin is in progress.
+ */
+public class RejoinException extends ToolkitRuntimeException {
 
   public RejoinException() {
     super();

@@ -3,7 +3,9 @@
  */
 package org.terracotta.toolkit.nonstop;
 
-public class NonStopException extends RuntimeException {
+import org.terracotta.toolkit.ToolkitRuntimeException;
+
+public class NonStopException extends ToolkitRuntimeException {
   public NonStopException() {
     super();
   }

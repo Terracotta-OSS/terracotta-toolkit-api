@@ -357,8 +357,7 @@ public interface Toolkit {
   ToolkitBarrier getBarrier(String name, int parties);
 
   /**
-   * Fires an application specific Operator Event with the specified {@link OperatorEventLevel} and eventMessage. This
-   * is optional and implementations can throw {@code UnsupportedOperationException} or choose to ignore.
+   * Fires an application specific Operator Event with the specified {@link OperatorEventLevel} and eventMessage.
    * 
    * @param level level of the operator event
    * @param applicationName name of the application which is firing the event
