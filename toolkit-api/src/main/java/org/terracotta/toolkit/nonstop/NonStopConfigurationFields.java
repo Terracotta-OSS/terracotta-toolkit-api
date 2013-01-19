@@ -17,6 +17,9 @@ public interface NonStopConfigurationFields {
   String                      NON_STOP_TIMEOUT_MILLIS                    = "nonStopTimeoutMillis";
   long                        DEFAULT_TIMEOUT_MILLIS                     = TimeUnit.SECONDS.toMillis(30L);
 
+  String                      NON_STOP_DEFAULT_SEARCH_TIMEOUT_MILLIS     = "nonStopSearchTimeoutMillis";
+  long                        DEFAULT_SEARCH_TIMEOUT_MILLIS              = TimeUnit.SECONDS.toMillis(30L);
+
   String                      NON_STOP_READ_OP_TIMEOUT_BEHAVIOR          = "nonStopReadOpTimeoutBehavior";
   NonStopReadTimeoutBehavior  DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR     = NonStopReadTimeoutBehavior.EXCEPTION;
 
