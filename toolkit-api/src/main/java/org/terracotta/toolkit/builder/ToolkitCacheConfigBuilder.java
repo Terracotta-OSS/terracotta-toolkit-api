@@ -7,7 +7,6 @@ import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.store.ToolkitConfigFields;
 import org.terracotta.toolkit.store.ToolkitConfigFields.Consistency;
-import org.terracotta.toolkit.store.ToolkitConfigFields.PinningStore;
 
 import java.io.Serializable;
 
@@ -20,8 +19,8 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   private int          maxTTISeconds;
   private int          maxTTLSeconds;
   private int          maxTotalCount;
+  private boolean      pinnedInLocalMemory;
   private boolean      evictionEnabled;
-  private PinningStore pinningStore;
 
   /**
    * Sets the concurrency config to the new value and returns {@code this}
@@ -123,23 +122,23 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   }
 
   /**
-   * Set the pinning store config
-   * 
+   * Sets whether entries should be pinned in local memory
+   *
    * @return same instance
    */
-  public ToolkitCacheConfigBuilder pinningStore(PinningStore pinningStoreParam) {
-    pinningStore = pinningStoreParam;
-    addFieldToApply(ToolkitConfigFields.PINNING_STORE_FIELD_NAME, pinningStoreParam.name());
+  public ToolkitCacheConfigBuilder pinnedInLocalMemory(boolean pinnedInLocalMemory) {
+    this.pinnedInLocalMemory = pinnedInLocalMemory;
+    addFieldToApply(ToolkitConfigFields.PINNED_IN_LOCAL_MEMORY_FIELD_NAME, pinnedInLocalMemory);
     return this;
   }
 
   /**
-   * Getter for pinning store
-   * 
-   * @return the pinning store
+   * Return whether entries are pinned in local memory.
+   *
+   * @return true for pinning in local memory
    */
-  public PinningStore getPinningStore() {
-    return pinningStore;
+  public boolean isPinnedInLocalMemory() {
+    return pinnedInLocalMemory;
   }
 
   /**

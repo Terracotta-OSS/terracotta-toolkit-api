@@ -91,15 +91,6 @@ public interface ToolkitConfigFields {
   boolean DEFAULT_COPY_ON_READ_ENABLED       = false;
 
   /**
-   * Enum type representing valid values for {@link ToolkitConfigFields#PINNING_STORE_FIELD_NAME} name mapping. Use
-   * {@link PinningStore#name()}
-   */
-  @TCKStrict
-  public enum PinningStore {
-    INCACHE, LOCALHEAP, LOCALMEMORY, NONE
-  }
-
-  /**
    * Time to idle (in seconds) for a Cache<br>
    * 0 means Infinite.<br>
    * Valid Values are positive integers
@@ -133,8 +124,8 @@ public interface ToolkitConfigFields {
   boolean DEFAULT_EVICTION_ENABLED = true;
 
   /**
-   * Pinning store of the Map.
+   * Whether cache entries should be pinned in local memory.
    */
-  String PINNING_STORE_FIELD_NAME   = "pinningStore";
-  String DEFAULT_PINNING_STORE      = PinningStore.NONE.name();
+  String  PINNED_IN_LOCAL_MEMORY_FIELD_NAME   = "pinnedInLocalMemory";
+  boolean DEFAULT_PINNED_IN_LOCAL_MEMORY      = false;
 }
