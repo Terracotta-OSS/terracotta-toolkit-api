@@ -1,6 +1,7 @@
 /*
  * All content copyright Terracotta, Inc., unless otherwise indicated. All rights reserved.
  */
+
 package org.terracotta.toolkit.store;
 
 import org.terracotta.toolkit.builder.ToolkitStoreConfigBuilder;
@@ -123,6 +124,13 @@ public interface ToolkitConfigFields {
    */
   String MAX_TOTAL_COUNT_FIELD_NAME = "maxTotalCount";
   int    DEFAULT_MAX_TOTAL_COUNT    = 0;
+
+  /**
+   * Is eviction enabled for a cache.
+   * Valid values are true and false.
+   */
+  String EVICTION_ENABLED_FIELD_NAME = "evictionEnabled";
+  boolean DEFAULT_EVICTION_ENABLED = true;
 
   /**
    * Pinning store of the Map.

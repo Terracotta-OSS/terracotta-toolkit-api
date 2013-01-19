@@ -118,4 +118,12 @@ public final class ToolkitStoreConfigBuilder extends AbstractToolkitStoreCacheCo
     setConfigField(fieldName, value);
     return this;
   }
+
+  @Override
+  public Configuration build() {
+    // eviction is off for ToolkitStore by default
+    setConfigField(ToolkitConfigFields.EVICTION_ENABLED_FIELD_NAME, false);
+
+    return super.build();
+  }
 }

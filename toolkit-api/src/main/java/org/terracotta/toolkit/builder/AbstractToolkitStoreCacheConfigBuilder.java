@@ -12,6 +12,7 @@ import org.terracotta.toolkit.store.ToolkitStore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 class AbstractToolkitStoreCacheConfigBuilder {
   private int                                 concurrency;
@@ -25,7 +26,7 @@ class AbstractToolkitStoreCacheConfigBuilder {
   private boolean                             compressionEnabled;
   private boolean                             copyOnReadEnabled;
 
-  private final ArrayList<ConfigFieldMapping> fieldMappings = new ArrayList<ConfigFieldMapping>();
+  private final List<ConfigFieldMapping> fieldMappings = new ArrayList<ConfigFieldMapping>();
 
   protected void addFieldToApply(String name, Serializable value) {
     fieldMappings.add(new ConfigFieldMapping(name, value));

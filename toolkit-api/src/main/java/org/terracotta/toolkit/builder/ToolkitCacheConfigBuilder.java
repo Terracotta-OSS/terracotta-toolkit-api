@@ -20,11 +20,13 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   private int          maxTTISeconds;
   private int          maxTTLSeconds;
   private int          maxTotalCount;
+  private boolean      evictionEnabled;
   private PinningStore pinningStore;
 
   /**
    * Sets the concurrency config to the new value and returns {@code this}
    * 
+   * @param concurrencyParam new value of concurrency.
    * @return same instance
    * @throws IllegalArgumentException for non-positive <tt>concurrency</tt> params
    */
@@ -200,6 +202,26 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   public ToolkitCacheConfigBuilder maxTotalCount(int maxTotalCountParam) throws IllegalArgumentException {
     this.maxTotalCount = maxTotalCountParam;
     addFieldToApply(ToolkitConfigFields.MAX_TOTAL_COUNT_FIELD_NAME, maxTotalCount);
+    return this;
+  }
+
+  /**
+   * Returns eviction enabled
+   *
+   * @return eviction enabled
+   */
+  public boolean isEvictionEnabled() {
+    return evictionEnabled;
+  }
+
+  /**
+   * Sets eviction enabled/disabled
+   *
+   * @return same instance
+   */
+  public ToolkitCacheConfigBuilder evictionEnabled(boolean evictionEnabledParam) {
+    this.evictionEnabled = evictionEnabledParam;
+    addFieldToApply(ToolkitConfigFields.EVICTION_ENABLED_FIELD_NAME, evictionEnabled);
     return this;
   }
 
