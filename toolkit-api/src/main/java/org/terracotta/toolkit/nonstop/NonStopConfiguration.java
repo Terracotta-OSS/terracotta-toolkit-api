@@ -29,7 +29,7 @@ public interface NonStopConfiguration {
   /**
    * @return search timeout in millis. This is the time out after which toolkit will attempt to abort the on going search operation.
    */
-  long getDefaultSearchTimeoutMillis();
+  long getSearchTimeoutMillis();
 
 
   /**

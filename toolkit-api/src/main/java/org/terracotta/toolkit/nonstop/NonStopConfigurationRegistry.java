@@ -79,7 +79,10 @@ public interface NonStopConfigurationRegistry {
 
   /**
    * @return the timeout registered for search operations.<br>
-   *         It will return -1 no timeout has been set
+   *         If the timeout was not registered, the searchTimeout setting from the nonstop configuration will be
+   *         returned. If the searchTimeout was not specified in the nonstop configuration, the default search timeout
+   *         will be returned.
+   *
    */
   long getTimeoutForSearch(String instanceName, ToolkitObjectType objectType);
 

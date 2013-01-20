@@ -12,7 +12,7 @@ public class NonStopConfigurationBuilder {
   private NonStopReadTimeoutBehavior  immutableOpNonStopTimeoutBehavior = NonStopConfigurationFields.DEFAULT_NON_STOP_READ_TIMEOUT_BEHAVIOR;
   private NonStopWriteTimeoutBehavior mutableOpNonStopTimeoutBehavior   = NonStopConfigurationFields.DEFAULT_NON_STOP_WRITE_TIMEOUT_BEHAVIOR;
   private long                        timeout                           = NonStopConfigurationFields.DEFAULT_TIMEOUT_MILLIS;
-  private long                        defaultSearchTimeout              = NonStopConfigurationFields.DEFAULT_SEARCH_TIMEOUT_MILLIS;
+  private long                        searchTimeout                     = NonStopConfigurationFields.DEFAULT_SEARCH_TIMEOUT_MILLIS;
   private boolean                     isEnabled                         = NonStopConfigurationFields.DEFAULT_NON_STOP_ENABLED;
   private boolean                     immediateTimeout                  = NonStopConfigurationFields.DEFAULT_NON_STOP_IMMEDIATE_TIMEOUT_ENABLED;
 
@@ -33,12 +33,12 @@ public class NonStopConfigurationBuilder {
     return this;
   }
 
-  public NonStopConfigurationBuilder defaultSearchTimeoutMillis(long defaultSearchTimeout) {
-     if (defaultSearchTimeout < 0) {
+  public NonStopConfigurationBuilder searchTimeoutMillis(long searchTimeout) {
+     if (searchTimeout < 0) {
          throw new IllegalArgumentException("default search timeout cannot be less than 0");
      }
 
-     this.defaultSearchTimeout = defaultSearchTimeout;
+     this.searchTimeout = searchTimeout;
      return this;
   }
 
@@ -54,7 +54,7 @@ public class NonStopConfigurationBuilder {
   }
 
   public NonStopConfiguration build() {
-    return new NonStopToolkitConfigImpl(isEnabled, timeout, defaultSearchTimeout, immutableOpNonStopTimeoutBehavior,
+    return new NonStopToolkitConfigImpl(isEnabled, timeout, searchTimeout, immutableOpNonStopTimeoutBehavior,
                                                                mutableOpNonStopTimeoutBehavior, immediateTimeout);
   }
 
@@ -63,7 +63,7 @@ public class NonStopConfigurationBuilder {
     NonStopToolkitConfigImpl(boolean isEnabled, long timeout, long searchTimeout, NonStopReadTimeoutBehavior immutableOpBehavior,
                              NonStopWriteTimeoutBehavior mutableOpBehavior, boolean immediateTimeout) {
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_TIMEOUT_MILLIS, timeout);
-      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_DEFAULT_SEARCH_TIMEOUT_MILLIS, searchTimeout);
+      internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_SEARCH_TIMEOUT_MILLIS, searchTimeout);
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_READ_OP_TIMEOUT_BEHAVIOR, immutableOpBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_WRITE_OP_TIMEOUT_BEHAVIOR, mutableOpBehavior.name());
       internalSetConfigMapping(NonStopConfigurationFields.NON_STOP_ENABLED, isEnabled);
@@ -88,8 +88,8 @@ public class NonStopConfigurationBuilder {
     }
 
     @Override
-    public long getDefaultSearchTimeoutMillis() {
-      return getLong(NonStopConfigurationFields.NON_STOP_DEFAULT_SEARCH_TIMEOUT_MILLIS);
+    public long getSearchTimeoutMillis() {
+      return getLong(NonStopConfigurationFields.NON_STOP_SEARCH_TIMEOUT_MILLIS);
     }
 
       @Override
