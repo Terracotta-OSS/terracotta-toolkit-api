@@ -10,6 +10,9 @@ import org.terracotta.toolkit.feature.SearchFeature;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * List of features that a toolkit implementation can support.
+ */
 public final class ToolkitFeatureType<T extends ToolkitFeature> {
 
   private static final List<ToolkitFeatureType> features = new ArrayList<ToolkitFeatureType>();
@@ -27,15 +30,15 @@ public final class ToolkitFeatureType<T extends ToolkitFeature> {
   /**
    * Offheap feature
    */
-  public static final ToolkitFeatureType<OffheapFeature>       OFFHEAP       = define(OffheapFeature.class);
+  public static final ToolkitFeatureType<OffheapFeature> OFFHEAP = define(OffheapFeature.class);
   /**
    * Search feature
    */
-  public static final ToolkitFeatureType<SearchFeature>        SEARCH        = define(SearchFeature.class);
+  public static final ToolkitFeatureType<SearchFeature>  SEARCH  = define(SearchFeature.class);
   /**
    * Nonstop feature
    */
-  public static final ToolkitFeatureType<NonStopFeature>       NONSTOP       = define(NonStopFeature.class);
+  public static final ToolkitFeatureType<NonStopFeature> NONSTOP = define(NonStopFeature.class);
 
   /**
    * Returns list of all features that a toolkit can support.

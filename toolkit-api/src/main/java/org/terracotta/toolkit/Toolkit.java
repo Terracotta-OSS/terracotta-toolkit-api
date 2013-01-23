@@ -35,14 +35,13 @@ import org.terracotta.toolkit.store.ToolkitStore;
  * Some instances can be destroyed, and in such cases the objects will also be instance of {@link Destroyable}. Some
  * instances also perform lock-based mutate and read operations based on a read-write lock associated with the instance,
  * these are instances of {@link ToolkitLockedObject}. There are certain optional features in the toolkit denoted by
- * {@link ToolkitCapability}. Certain implementations can support these features while some can throw
- * {@code UnsupportedOperationException}. Users can use {@link #isCapabilityEnabled(String)} at runtime to query whether
- * the specific feature is enabled or not. Some toolkit implementations can be distributed in nature, for example
- * Terracotta clustered toolkits, and in such cases can support the {@link #getClusterInfo()} api. Toolkit
- * implementations that are not distributed in nature can throw {@code UnsupportedOperationException} for the same.
- * Toolkit implementors can also choose to implement operator events, for easy monitoring, and support the
- * {@link #fireOperatorEvent(OperatorEventLevel, String, String)} or otherwise throw
- * {@code UnsupportedOperationException}.
+ * {@link ToolkitFeatureType}. Certain implementations can support these features. Users can use
+ * {@link ToolkitFeature#isEnabled()} at runtime to check whether the specific feature is enabled or not. Some toolkit
+ * implementations can be distributed in nature, for example Terracotta clustered toolkits, and in such cases can
+ * support the {@link #getClusterInfo()} api. Toolkit implementations that are not distributed in nature can throw
+ * {@code UnsupportedOperationException} for the same. Toolkit implementors can also choose to implement operator
+ * events, for easy monitoring, and support the {@link #fireOperatorEvent(OperatorEventLevel, String, String)} or
+ * otherwise throw {@code UnsupportedOperationException}.
  * <p>
  * <h2>Destroy Behavior</h2> Toolkit objects that can be destroyed are instances of {@link Destroyable} and once
  * destroyed cannot be reused. Attempting to use an object after getting destroyed will result in
