@@ -57,9 +57,15 @@ public interface ClusterEvent {
      */
     OPERATIONS_DISABLED,
     /**
-     * When a node rejoins the cluster. {@link ClusterEvent#getNode()} will return the new node id after rejoin.
+     * When a node rejoins the cluster. {@link ClusterEvent#getNode()} will return the new node id after rejoin. This
+     * event type is local and will be notified only in the current node.
      */
-    NODE_REJOINED
+    NODE_REJOINED,
+    /**
+     * Event type representing an irrecoverable error in the current node. This event type is local and will be notified
+     * only in the current node.
+     */
+    NODE_ERROR
   }
 
   /**
@@ -75,5 +81,12 @@ public interface ClusterEvent {
    * @return event type
    */
   Type getType();
+
+  /**
+   * Get the detailed message associated with the event
+   * 
+   * @return detailed message of the event
+   */
+  String getDetailedMessage();
 
 }
