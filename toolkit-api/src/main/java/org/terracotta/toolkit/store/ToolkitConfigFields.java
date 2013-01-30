@@ -110,11 +110,11 @@ public interface ToolkitConfigFields {
 
   /**
    * Total Max count (capacity) allowed for this cache<br>
-   * 0 means Infinite.<br>
-   * Valid Values are positive integers
+   * -1 means Infinite.<br>
+   * Valid Values are integers.
    */
   String MAX_TOTAL_COUNT_FIELD_NAME = "maxTotalCount";
-  int    DEFAULT_MAX_TOTAL_COUNT    = 0;
+  int    DEFAULT_MAX_TOTAL_COUNT    = -1;
 
   /**
    * Is eviction enabled for a cache.

@@ -19,7 +19,6 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
   private int          maxTTISeconds;
   private int          maxTTLSeconds;
   private int          maxTotalCount;
-  private boolean      pinnedInLocalMemory;
   private boolean      evictionEnabled;
 
   /**
@@ -127,18 +126,8 @@ public final class ToolkitCacheConfigBuilder extends AbstractToolkitStoreCacheCo
    * @return same instance
    */
   public ToolkitCacheConfigBuilder pinnedInLocalMemory(boolean pinnedInLocalMemory) {
-    this.pinnedInLocalMemory = pinnedInLocalMemory;
-    addFieldToApply(ToolkitConfigFields.PINNED_IN_LOCAL_MEMORY_FIELD_NAME, pinnedInLocalMemory);
+    setPinnedInLocalMemory(pinnedInLocalMemory);
     return this;
-  }
-
-  /**
-   * Return whether entries are pinned in local memory.
-   *
-   * @return true for pinning in local memory
-   */
-  public boolean isPinnedInLocalMemory() {
-    return pinnedInLocalMemory;
   }
 
   /**

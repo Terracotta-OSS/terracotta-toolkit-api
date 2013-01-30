@@ -38,6 +38,16 @@ public final class ToolkitStoreConfigBuilder extends AbstractToolkitStoreCacheCo
   }
 
   /**
+   * Sets whether entries should be pinned in local memory
+   *
+   * @return same instance
+   */
+  public ToolkitStoreConfigBuilder pinnedInLocalMemory(boolean pinnedInLocalMemory) {
+    setPinnedInLocalMemory(pinnedInLocalMemory);
+    return this;
+  }
+
+  /**
    * Sets the maxBytesLocalHeap
    * 
    * @return same instance
@@ -119,11 +129,4 @@ public final class ToolkitStoreConfigBuilder extends AbstractToolkitStoreCacheCo
     return this;
   }
 
-  @Override
-  public Configuration build() {
-    // eviction is off for ToolkitStore by default
-    setConfigField(ToolkitConfigFields.EVICTION_ENABLED_FIELD_NAME, false);
-
-    return super.build();
-  }
 }

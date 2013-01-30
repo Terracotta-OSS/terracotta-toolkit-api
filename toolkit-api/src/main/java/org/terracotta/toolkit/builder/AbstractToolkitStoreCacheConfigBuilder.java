@@ -25,6 +25,7 @@ class AbstractToolkitStoreCacheConfigBuilder {
 
   private boolean                             compressionEnabled;
   private boolean                             copyOnReadEnabled;
+  private boolean                             pinnedInLocalMemory;
 
   private final List<ConfigFieldMapping> fieldMappings = new ArrayList<ConfigFieldMapping>();
 
@@ -102,6 +103,18 @@ class AbstractToolkitStoreCacheConfigBuilder {
    */
   public boolean isCompressionEnabled() {
     return compressionEnabled;
+  }
+
+  /**
+   * Sets whether entries should be pinned in local memory
+   */
+  public void setPinnedInLocalMemory(boolean pinnedInLocalMemory) {
+    this.pinnedInLocalMemory = pinnedInLocalMemory;
+    addFieldToApply(ToolkitConfigFields.PINNED_IN_LOCAL_MEMORY_FIELD_NAME, this.pinnedInLocalMemory);
+  }
+
+  public boolean isPinnedInLocalMemory() {
+    return pinnedInLocalMemory;
   }
 
   /**
