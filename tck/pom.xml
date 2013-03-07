@@ -16,9 +16,9 @@
 
   <properties>
     <toolkit-api.version>2.0-SNAPSHOT</toolkit-api.version>
-    <signature-api.version>2.0-SNAPSHOT</signature-api.version>
+    <signature-api.version>2.0</signature-api.version>
     
-    <toolkit-tck.version>1.0-SNAPSHOT</toolkit-tck.version> <!-- sigtest tool -->
+    <toolkit-tck.version>1.0</toolkit-tck.version> <!-- sigtest tool -->
   </properties>
 
   <dependencies>
@@ -75,6 +75,9 @@
         <configuration>
           <skipTests>false</skipTests>
           <skip>false</skip>
+          <systemPropertyVariables>
+            <tested-api.version>${toolkit-api.version}</tested-api.version>
+          </systemPropertyVariables>
         </configuration>
       </plugin>     
     </plugins>

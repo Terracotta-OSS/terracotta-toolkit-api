@@ -43,14 +43,14 @@ public class BackwardCompatibleTest {
 
   @Test
   public void tckTest() throws Exception {
+    String testedAPIVersion = System.getProperty("tested-api.version", "current");
     File signatureDir = new File(baseDir, "src/signatures");
     File[] apiDirs = signatureDir.listFiles();
     for (File apiDir : apiDirs) {
       if (apiDir.getName().equals(".svn")) continue;
-      String apiVersion = apiDir.getName();
       File signatureFile = new File(apiDir, "reference-" + jdkVersion + ".sig");
       if (!signatureFile.exists()) { throw new AssertionError("Signature file not found: " + signatureFile); }
-      ToolkitSignatureTestConfig config = setupConfig(apiVersion, signatureFile);
+      ToolkitSignatureTestConfig config = setupConfig(testedAPIVersion, signatureFile);
       config.packages(DEFAULT_API_PACKAGE);
       ToolkitSignatureTest tst = new ToolkitSignatureTest(config.getArguments());
       Assert.assertTrue(tst.run());
