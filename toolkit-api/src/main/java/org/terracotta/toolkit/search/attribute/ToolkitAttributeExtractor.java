@@ -14,7 +14,7 @@ public interface ToolkitAttributeExtractor<K, V> {
    * Returns map of extracted attribute names to their values, for given key/value pair. If return value is
    * {@link #DO_NOT_INDEX}, skips this tuple from indexing
    */
-  Map<String, ? extends Object> attributesFor(K key, V value) throws ToolkitAttributeExtractorException;
+  Map<String, Object> attributesFor(K key, V value) throws ToolkitAttributeExtractorException;
 
   // fully qualified for checkstyle
   public static final org.terracotta.toolkit.search.attribute.ToolkitAttributeExtractor NULL_EXTRACTOR = new NullAttributeExtractor();
