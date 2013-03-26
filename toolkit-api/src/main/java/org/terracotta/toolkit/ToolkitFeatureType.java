@@ -3,6 +3,7 @@
  */
 package org.terracotta.toolkit;
 
+import org.terracotta.toolkit.atomic.ToolkitTransactionController;
 import org.terracotta.toolkit.feature.NonStopFeature;
 import org.terracotta.toolkit.feature.OffheapFeature;
 import org.terracotta.toolkit.feature.SearchFeature;
@@ -20,7 +21,6 @@ public final class ToolkitFeatureType<T extends ToolkitFeature> {
   private static <F extends ToolkitFeature> ToolkitFeatureType<F> define(Class<F> clazz) {
     ToolkitFeatureType type = new ToolkitFeatureType(clazz);
     if (features.contains(type)) {
-      //
       throw new AssertionError("Cannot define multiple times for same feature interface - " + clazz.getName());
     }
     features.add(type);
@@ -39,6 +39,10 @@ public final class ToolkitFeatureType<T extends ToolkitFeature> {
    * Nonstop feature
    */
   public static final ToolkitFeatureType<NonStopFeature> NONSTOP = define(NonStopFeature.class);
+  /**
+   * Transaction feature
+   */
+  public static final ToolkitFeatureType<ToolkitTransactionController> TRANSACTION = define(ToolkitTransactionController.class);
 
   /**
    * Returns list of all features that a toolkit can support.
