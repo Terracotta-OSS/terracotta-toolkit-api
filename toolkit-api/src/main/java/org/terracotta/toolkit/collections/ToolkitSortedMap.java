@@ -18,6 +18,8 @@ import java.util.SortedMap;
  * Consult the {@linkplain Toolkit Toolkit class level docs} for more info on behavior regarding destroy.
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}
+ * <p>
+ * Note: Map.Entry pairs returned by methods do not support the Entry.setValue method.
  */
 public interface ToolkitSortedMap<K extends Comparable<? super K>, V> extends SortedMap<K, V>, ToolkitMap<K, V> {
   // no extra methods
