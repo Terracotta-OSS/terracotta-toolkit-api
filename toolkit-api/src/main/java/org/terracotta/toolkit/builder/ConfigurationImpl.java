@@ -4,13 +4,12 @@
 package org.terracotta.toolkit.builder;
 
 import org.terracotta.toolkit.config.AbstractConfiguration;
-import org.terracotta.toolkit.config.Configuration;
 
 import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-class ConfigurationImpl extends AbstractConfiguration implements Configuration {
+class ConfigurationImpl extends AbstractConfiguration {
 
   private final ConcurrentHashMap<String, Serializable> map = new ConcurrentHashMap<String, Serializable>();
 

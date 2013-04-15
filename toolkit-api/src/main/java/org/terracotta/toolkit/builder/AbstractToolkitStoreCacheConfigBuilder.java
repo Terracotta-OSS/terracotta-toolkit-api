@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-class AbstractToolkitStoreCacheConfigBuilder {
+abstract class AbstractToolkitStoreCacheConfigBuilder {
   private int                                 concurrency;
   private Consistency                         consistency;
   private long                                maxBytesLocalHeap;

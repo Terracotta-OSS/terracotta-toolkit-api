@@ -10,7 +10,6 @@ import org.terracotta.toolkit.object.ToolkitObject;
 import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeException;
 import org.terracotta.toolkit.search.SearchableMap;
 import org.terracotta.toolkit.store.ToolkitConfigFields;
-import org.terracotta.toolkit.store.ToolkitStore;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -18,10 +17,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * A toolkit cache. Its extends from {@link ToolkitStore} and has additional functionalities as a cache. The main
- * difference between a store and a cache is that eviction can happen on caches, while it won't in case of key-value
- * stores. A toolkit cache can be configured using various configs available in {@link ToolkitConfigFields}. Consult
- * {@link org.terracotta.toolkit.Toolkit#getCache(String, Configuration, Class)} for more info on various configs.
+ * A toolkit cache. A toolkit cache can be configured using various configs available in {@link ToolkitConfigFields}.
+ * Consult {@link org.terracotta.toolkit.Toolkit#getCache(String, Configuration, Class)} for more info on various
+ * configs.
  * <p>
  * Consult the {@link org.terracotta.toolkit.Toolkit class level docs} for more info on behavior regarding destroy.
  * <p>
@@ -48,7 +46,7 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   void putNoReturn(K key, V value);
 
   /**
-   * Perform get for the given set of keys. Keys which are not present in the Store will have null values associated
+   * Perform get for the given set of keys. Keys which are not present in the Cache will have null values associated
    * with them in the returned map. The returned map is unmodifiable.
    * 
    * @param keys the collection of keys to lookup
@@ -57,14 +55,14 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   Map<K, V> getAll(final Collection<? extends K> keys);
 
   /**
-   * Returns the configuration of this key-value store.
+   * Returns the configuration of this cache.
    * 
-   * @return the configuration of this key-value store
+   * @return the configuration of this cache
    */
   Configuration getConfiguration();
 
   /**
-   * Updates the configuration of the Store using passed in value. Throws {@link IllegalArgumentException} if the config
+   * Updates the configuration of the Cache using passed in value. Throws {@link IllegalArgumentException} if the config
    * field {@code name} is not dynamic and cannot be changed at runtime
    */
   void setConfigField(String name, Serializable value);
@@ -82,7 +80,7 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   ToolkitReadWriteLock createLockForKey(K key);
 
   /**
-   * Same as {@link ToolkitStore#get(Object)} but does not update the lastAccessedTime
+   * Same as {@link ToolkitCache#get(Object)} but does not update the lastAccessedTime
    * 
    * @param key the key
    * @return value mapped to the key or null otherwise
@@ -90,7 +88,7 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   V getQuiet(Object key);
 
   /**
-   * Similar to {@link ToolkitStore#getAll(Collection)}, but doesn't update lastAccessedTime
+   * Similar to {@link ToolkitCache#getAll(Collection)}, but doesn't update lastAccessedTime
    * 
    * @param keys the collection of keys to lookup
    * @return a map of keys and the value mapped to the given key (but not necessarily the current mapping)
@@ -98,7 +96,7 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
   Map<K, V> getAllQuiet(final Collection<K> keys);
 
   /**
-   * Similar to {@link ToolkitStore#putNoReturn(Object, Object)} but with ability to specify creation time, tti, ttl etc
+   * Similar to {@link ToolkitCache#putNoReturn(Object, Object)} but with ability to specify creation time, tti, ttl etc
    * 
    * @param key the key
    * @param value the value
@@ -117,6 +115,7 @@ public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    * @param createTimeInSecs creation time in seconds since epoch
    * @param maxTTISeconds tti of the entry
    * @param maxTTLSeconds ttl of the entry
+   * @return the previous value associated with the specified key, or <tt>null</tt> if there was no mapping for the key.
    */
   V putIfAbsent(K key, V value, long createTimeInSecs, int maxTTISeconds, int maxTTLSeconds);
 
