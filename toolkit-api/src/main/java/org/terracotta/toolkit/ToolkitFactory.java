@@ -19,7 +19,7 @@ import java.util.ServiceLoader;
  * For example, for creating Terracotta clustered toolkit, use:
  * 
  * <pre>
- * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:port&quot;);
+ * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:tsa-port&quot;);
  * </pre>
  * 
  * where server is the host-name/ip of the Terracotta Server and port is the port number where Terracotta Server Array
@@ -39,7 +39,7 @@ public final class ToolkitFactory {
    * For example, for creating Terracotta clustered toolkit, use:
    * 
    * <pre>
-   * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:port&quot;);
+   * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:tsa-port&quot;);
    * </pre>
    * 
    * where server is the host-name/ip of the Terracotta Server and port is the port number where Terracotta Server Array
@@ -65,7 +65,7 @@ public final class ToolkitFactory {
    * For example, for creating Terracotta clustered toolkit, use:
    * 
    * <pre>
-   * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:port&quot;);
+   * Toolkit toolkit = ToolkitFactory.createToolkit(&quot;toolkit:terracotta://server:tsa-port&quot;);
    * </pre>
    * 
    * where server is the host-name/ip of the Terracotta Server and port is the port number where Terracotta Server Array
