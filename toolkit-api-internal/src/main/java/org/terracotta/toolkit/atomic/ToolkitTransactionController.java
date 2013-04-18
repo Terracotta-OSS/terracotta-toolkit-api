@@ -7,7 +7,9 @@ import org.terracotta.toolkit.ToolkitFeature;
 import org.terracotta.toolkit.concurrent.locks.ToolkitLock;
 
 /**
- * A Controller for {@link ToolkitTransaction}
+ * A Controller for {@link ToolkitTransaction}. <br>
+ * Write Locks taken inside the toolkit transaction will be released only after the transaction is commited. Accessing
+ * multiple locks or Locked Objects inside a transaction should be done in a fixed order in order to avoid deadlocks.
  */
 
 public interface ToolkitTransactionController extends ToolkitFeature {
@@ -17,13 +19,6 @@ public interface ToolkitTransactionController extends ToolkitFeature {
    * {@link ToolkitTransaction#commit()} is called by the same thread. User should use {@link ToolkitLock} with
    * {@link ToolkitTransaction} for visibility.
    */
-  public ToolkitTransaction beginTransaction();
-
-  /**
-   * Creates a {@link ToolkitLock} with transaction capabilities. The very first {@link ToolkitLock#lock()} will create
-   * a transaction with this lock and the very last {@link ToolkitLock#unlock()} will
-   * {@link ToolkitTransaction#commit()} that transaction.
-   */
-  public <T extends ToolkitLock> T createTransactionalLock(T lock);
+  public ToolkitTransaction beginTransaction(ToolkitTransactionType type);
 
 }

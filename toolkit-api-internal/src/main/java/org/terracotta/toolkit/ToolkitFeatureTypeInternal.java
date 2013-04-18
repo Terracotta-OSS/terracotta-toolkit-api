@@ -3,6 +3,7 @@
  */
 package org.terracotta.toolkit;
 
+import org.terracotta.toolkit.atomic.ToolkitTransactionController;
 import org.terracotta.toolkit.internal.feature.LicenseFeature;
 
 import java.util.ArrayList;
@@ -25,7 +26,12 @@ public final class ToolkitFeatureTypeInternal<T extends ToolkitFeature> {
   /**
    * License feature
    */
-  public static final ToolkitFeatureTypeInternal<LicenseFeature> LICENSE = define(LicenseFeature.class);
+  public static final ToolkitFeatureTypeInternal<LicenseFeature>               LICENSE     = define(LicenseFeature.class);
+
+  /**
+   * Transaction feature
+   */
+  public static final ToolkitFeatureTypeInternal<ToolkitTransactionController> TRANSACTION = define(ToolkitTransactionController.class);
 
   /**
    * Returns list of all features that a toolkit can support.
