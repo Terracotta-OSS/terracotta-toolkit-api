@@ -21,16 +21,16 @@ public interface ToolkitCacheInternal<K, V> extends ToolkitCache<K, V> {
   Map<Object, Set<ClusterNode>> getNodesWithKeys(Set portableKeys);
 
   /**
-   * Performs an unlocked put. This method does not take any lock. If user takes lock outside then eventual cache will
-   * behave like strong cache.
+   * Performs an unlocked put. This method does not take any lock so strong cache behaves like eventual cache. If user
+   * takes lock outside then eventual cache will behave like strong cache.
    * 
    * @param map input map
    */
   void unlockedPutNoReturn(K k, V v, int createTime, int customTTI, int customTTL);
 
   /**
-   * Performs an unlocked remove. This method does not take any lock. If user takes lock outside then eventual cache
-   * will behave like strong cache.
+   * Performs an unlocked remove. This method does not take any lock so strong cache behaves like eventual cache. If
+   * user takes lock outside then eventual cache will behave like strong cache.
    * 
    * @param map input map
    */
