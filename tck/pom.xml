@@ -15,9 +15,7 @@
   <description>Toolkit compatiblity check</description>
 
   <properties>
-    <toolkit-api.version>${project.version}</toolkit-api.version>
     <signature-api.version>2.1</signature-api.version>
-    
     <toolkit-tck.version>1.0</toolkit-tck.version> <!-- sigtest tool -->
   </properties>
 
@@ -30,7 +28,7 @@
     <dependency>
       <groupId>org.terracotta.toolkit</groupId>
       <artifactId>terracotta-toolkit-api</artifactId>
-      <version>${toolkit-api.version}</version>
+      <version>${project.version}</version>
     </dependency>    
     <dependency>
       <groupId>junit</groupId>
@@ -58,7 +56,7 @@
                 <artifactItem>
                   <groupId>org.terracotta.toolkit</groupId>
                   <artifactId>terracotta-toolkit-api</artifactId>
-                  <version>${toolkit-api.version}</version>
+                  <version>${project.version}</version>
                   <outputDirectory>${project.build.directory}</outputDirectory>
                   <overWrite>true</overWrite>
                   <destFileName>terracotta-toolkit-api.jar</destFileName>
@@ -76,7 +74,7 @@
           <skipTests>false</skipTests>
           <skip>false</skip>
           <systemPropertyVariables>
-            <tested-api.version>${toolkit-api.version}</tested-api.version>
+            <tested-api.version>${project.version}</tested-api.version>
           </systemPropertyVariables>
         </configuration>
       </plugin>     
