@@ -198,20 +198,17 @@ public enum ToolkitAttributeType {
     if (name == null) { throw new NullPointerException("null name"); }
     if (value == null) { throw new NullPointerException("null value"); }
 
-    ToolkitAttributeType type = typeForOrNull(value);
+    ToolkitAttributeType type = typeForOrNull(value instanceof Enum ? ((Enum) value).getDeclaringClass() : value
+        .getClass());
     if (type != null) { return type; }
 
     throw new SearchException("Unsupported type for search attribute [" + name + "]: " + value.getClass().getName());
   }
 
-  private static ToolkitAttributeType typeForOrNull(Object value) {
-    ToolkitAttributeType type = MAPPINGS.get(value.getClass());
-    if (type != null) { return type; }
+  public static ToolkitAttributeType typeFor(Class<?> c) {
+    if (c == null) throw new NullPointerException("null class");
 
-    // check for enum -- calling getClass().isEnum() isn't correct in this context
-    if (value instanceof Enum) { return ENUM; }
-
-    return null;
+    return typeForOrNull(c);
   }
 
   /**
@@ -223,7 +220,7 @@ public enum ToolkitAttributeType {
   public static boolean isSupportedType(Object value) {
     if (value == null) { return true; }
 
-    return typeForOrNull(value) != null;
+    return typeForOrNull(value.getClass()) != null;
   }
 
   /**
@@ -250,6 +247,13 @@ public enum ToolkitAttributeType {
     return value.getClass().getName();
   }
 
+  private static ToolkitAttributeType typeForOrNull(Class<?> c) {
+    ToolkitAttributeType type = MAPPINGS.get(c);
+    if (type != null) { return type; }
+
+    return c.isEnum() ? ENUM : null;
+  }
+
   static {
     MAPPINGS.put(Boolean.class, BOOLEAN);
     MAPPINGS.put(Byte.class, BYTE);
@@ -262,5 +266,13 @@ public enum ToolkitAttributeType {
     MAPPINGS.put(String.class, STRING);
     MAPPINGS.put(java.util.Date.class, DATE);
     MAPPINGS.put(java.sql.Date.class, SQL_DATE);
+    MAPPINGS.put(char.class, CHAR);
+    MAPPINGS.put(int.class, INT);
+    MAPPINGS.put(long.class, LONG);
+    MAPPINGS.put(byte.class, BYTE);
+    MAPPINGS.put(boolean.class, BOOLEAN);
+    MAPPINGS.put(float.class, FLOAT);
+    MAPPINGS.put(double.class, DOUBLE);
+    MAPPINGS.put(short.class, SHORT);
   }
 }
