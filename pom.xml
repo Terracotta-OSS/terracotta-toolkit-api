@@ -17,7 +17,6 @@
 
   <modules>
     <module>toolkit-api</module>
-    <module>toolkit-api-internal</module>
     <module>tck</module>
   </modules>
 
