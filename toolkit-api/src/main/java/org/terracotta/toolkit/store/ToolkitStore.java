@@ -4,6 +4,7 @@
 package org.terracotta.toolkit.store;
 
 import org.terracotta.toolkit.Toolkit;
+import org.terracotta.toolkit.bulkload.ToolkitBulkLoadObject;
 import org.terracotta.toolkit.concurrent.locks.ToolkitReadWriteLock;
 import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.object.Destroyable;
@@ -25,7 +26,8 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}.
  */
-public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject, SearchableMap<K, V> {
+public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject, SearchableMap<K, V>,
+    ToolkitBulkLoadObject {
   /**
    * Check if the value is contained in the store. Optional operation, some implementation may throw
    * {@code UnsupportedOperationException}
@@ -85,4 +87,5 @@ public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, To
    *         key
    */
   ToolkitReadWriteLock createLockForKey(K key);
+
 }

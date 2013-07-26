@@ -3,6 +3,7 @@
  */
 package org.terracotta.toolkit.cache;
 
+import org.terracotta.toolkit.bulkload.ToolkitBulkLoadObject;
 import org.terracotta.toolkit.concurrent.locks.ToolkitReadWriteLock;
 import org.terracotta.toolkit.config.Configuration;
 import org.terracotta.toolkit.object.Destroyable;
@@ -25,9 +26,8 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}
  */
-public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject,
-    SearchableMap<K, V> {
-
+public interface ToolkitCache<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject, SearchableMap<K, V>,
+    ToolkitBulkLoadObject {
   /**
    * Behaves the same as the standard {@link #remove(Object)} method except that the previous value is not returned.
    * This may provide significant performance improvements when the old value is not required.
