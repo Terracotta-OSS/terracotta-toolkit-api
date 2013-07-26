@@ -3,7 +3,9 @@
  */
 package org.terracotta.toolkit.bulkload;
 
-public interface ToolkitBulkLoadObject {
+import org.terracotta.toolkit.object.ToolkitObject;
+
+public interface ToolkitBulkLoadObject extends ToolkitObject {
 
   /**
    * Returns true if at least one node in the cluster is in bulk-load mode. Returns false otherwise.

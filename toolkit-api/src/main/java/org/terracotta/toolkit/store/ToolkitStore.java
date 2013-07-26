@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * Trying to add values that are not serializable will throw {@link NotSerializableRuntimeException}.
  */
-public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, ToolkitObject, SearchableMap<K, V>,
+public interface ToolkitStore<K, V> extends ConcurrentMap<K, V>, Destroyable, SearchableMap<K, V>,
     ToolkitBulkLoadObject {
   /**
    * Check if the value is contained in the store. Optional operation, some implementation may throw
