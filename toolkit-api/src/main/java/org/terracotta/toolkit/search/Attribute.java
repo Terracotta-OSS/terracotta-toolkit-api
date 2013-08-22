@@ -5,6 +5,7 @@ package org.terracotta.toolkit.search;
 
 import org.terracotta.toolkit.search.expression.Clause;
 import org.terracotta.toolkit.search.expression.Equals;
+import org.terracotta.toolkit.search.expression.Exists;
 import org.terracotta.toolkit.search.expression.Matches;
 import org.terracotta.toolkit.search.expression.OneOf;
 import org.terracotta.toolkit.search.expression.Range;
@@ -130,6 +131,13 @@ public class Attribute<T> {
    */
    public Clause eq(T value) {
    return new Equals(attributeName, value);
+   }
+
+  /**
+   * Create a clause that tests for presence of value for this attribute
+   */
+   public Clause exists() {
+    return new Exists(attributeName);
    }
   
    /**
