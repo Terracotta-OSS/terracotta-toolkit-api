@@ -5,7 +5,7 @@
   <parent>
     <artifactId>forge-parent</artifactId>
     <groupId>org.terracotta.forge</groupId>
-    <version>3.0</version>
+    <version>3.7</version>
     <relativePath />
   </parent>
 
@@ -41,6 +41,21 @@
       <url>http://www.terracotta.org/download/reflector/releases</url>
     </pluginRepository> 
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>terracotta-releases</id>
+      <name>Terracotta Releases Repository</name>
+      <url>${terracotta-releases-url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>terracotta-snapshots</id>
+      <uniqueVersion>false</uniqueVersion>
+      <name>Terracotta Snapshots Repository</name>
+      <url>${terracotta-snapshots-url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <scm>
 		<connection>scm:git:git@github.softwareag.com:Terracotta-OSS/terracotta-toolkit-api.git</connection>
 		<developerConnection>scm:git:https://github.softwareag.com/Terracotta-OSS/terracotta-toolkit-api.git</developerConnection>
