@@ -27,6 +27,8 @@ public interface QueryBuilder {
 
   QueryBuilder includeAggregator(AggregateFunction... aggregators);
 
+  QueryBuilder resultPageSize(int size);
+
   /**
    * Add a constraining clause to query to be built by this builder
    */

@@ -47,6 +47,11 @@ public interface ToolkitSearchQuery {
   boolean requestsValues();
 
   /**
+   * Returns max page size for search result retrieval
+   */
+  int getResultPageSize();
+
+  /**
    * Execute this search query and return result set.
    */
   SearchQueryResultSet execute() throws SearchException;
