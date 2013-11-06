@@ -25,4 +25,9 @@ public interface SearchQueryResultSet {
    */
   boolean anyCriteriaMatched();
 
+  /**
+   * Closes this result set. This frees up all resources associated with this set and makes it unavailable for future
+   * interactions.
+   */
+  void close();
 }
