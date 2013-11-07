@@ -4,6 +4,7 @@
 package org.terracotta.toolkit.search.attribute;
 
 import org.terracotta.toolkit.search.SearchException;
+import org.terracotta.toolkit.search.geospatial.LatLongCoordinate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -182,6 +183,17 @@ public enum ToolkitAttributeType {
       if (!(value instanceof String)) { throw new SearchException("Expecting a String value for attribute [" + name
                                                                   + "] but was " + type(value)); }
     }
+  },
+  LATLONGCOORDINATE {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void validateValue(String name, Object value) {
+      if (!(value instanceof LatLongCoordinate)) { throw new SearchException("Expecting a String value for attribute ["
+                                                                             + name
+                                                                  + "] but was " + type(value)); }
+    }
   };
 
   private static final Map<Class, ToolkitAttributeType> MAPPINGS = new HashMap<Class, ToolkitAttributeType>();
@@ -274,5 +286,6 @@ public enum ToolkitAttributeType {
     MAPPINGS.put(float.class, FLOAT);
     MAPPINGS.put(double.class, DOUBLE);
     MAPPINGS.put(short.class, SHORT);
+    MAPPINGS.put(LatLongCoordinate.class, LATLONGCOORDINATE);
   }
 }
