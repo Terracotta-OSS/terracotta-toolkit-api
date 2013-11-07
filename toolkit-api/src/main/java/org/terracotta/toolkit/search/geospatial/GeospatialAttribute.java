@@ -5,6 +5,7 @@ package org.terracotta.toolkit.search.geospatial;
 
 import org.terracotta.toolkit.search.Attribute;
 import org.terracotta.toolkit.search.expression.Clause;
+import org.terracotta.toolkit.search.expression.InPolygonClause;
 import org.terracotta.toolkit.search.expression.InRadiusClause;
 import org.terracotta.toolkit.search.expression.InRectangeClause;
 
@@ -21,4 +22,7 @@ public class GeospatialAttribute<T> extends Attribute<T> {
     return new InRectangeClause(getAttributeName(), lowerLeft, upperRight);
   }
 
+  public Clause inPolygone(LatLongCoordinate... points) {
+    return new InPolygonClause(getAttributeName(), points);
+  }
 }
