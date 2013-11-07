@@ -3,22 +3,22 @@
  */
 package org.terracotta.toolkit.search.geospatial;
 
+import org.terracotta.toolkit.search.Attribute;
 import org.terracotta.toolkit.search.expression.Clause;
 import org.terracotta.toolkit.search.expression.InRadiusClause;
 import org.terracotta.toolkit.search.expression.InRectangeClause;
 
-public class GeospatialAttribute {
-  private final String attributeName;
+public class GeospatialAttribute<T> extends Attribute<T> {
   public GeospatialAttribute(String attributeName) {
-    this.attributeName = attributeName;
+    super(attributeName);
   }
 
   public Clause inRadius(LatLongCoordinate center, double distance) {
-    return new InRadiusClause(attributeName, center, distance);
+    return new InRadiusClause(getAttributeName(), center, distance);
   }
 
   public Clause inRectangle(LatLongCoordinate lowerLeft, LatLongCoordinate upperRight) {
-    return new InRectangeClause(attributeName, lowerLeft, upperRight);
+    return new InRectangeClause(getAttributeName(), lowerLeft, upperRight);
   }
 
 }
