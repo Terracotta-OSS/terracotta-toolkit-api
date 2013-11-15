@@ -30,4 +30,9 @@ public interface SearchQueryResultSet {
    * interactions.
    */
   void close();
+
+  /**
+   * @return true if this result set has been closed
+   */
+  boolean isClosed();
 }
