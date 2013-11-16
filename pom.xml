@@ -1,19 +1,24 @@
-<?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <artifactId>forge-parent</artifactId>
     <groupId>org.terracotta.forge</groupId>
     <version>3.7</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <name>terracotta-toolkit-api-root</name>
   <groupId>org.terracotta.toolkit</groupId>
   <artifactId>terracotta-toolkit-api-root</artifactId>
-  <version>2.5-SNAPSHOT</version>
+  <version>2.5</version>
   <packaging>pom</packaging>
+
+  <properties>
+    <metadata.build.jenkins.url>http://jenkinsmaster.terracotta.lan:9000/job/terracotta-toolkit-api_trunk_releaser/33/</metadata.build.jenkins.url>
+    <metadata.build.maven.active.profiles>terracotta-repositories,release,tc-publish</metadata.build.maven.active.profiles>
+    <metadata.svn.revision>41622</metadata.svn.revision>
+  </properties>
 
   <modules>
     <module>toolkit-api</module>
