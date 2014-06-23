@@ -139,16 +139,12 @@ public final class ToolkitFactory {
   }
 
   private static class ToolkitFactoryServiceLookup {
-    private final static ServiceLoader<ToolkitFactoryService> TOOLKIT_FACTORY_SERVICE_LOADER = ServiceLoader
-                                                                                                 .load(ToolkitFactoryService.class,
-                                                                                                       ToolkitFactoryServiceLookup.class
-                                                                                                           .getClassLoader());
-
     private static Iterable<ToolkitFactoryService> getToolkitFactoryServices() {
       return new Iterable<ToolkitFactoryService>() {
         @Override
         public Iterator<ToolkitFactoryService> iterator() {
-          return TOOLKIT_FACTORY_SERVICE_LOADER.iterator();
+          return ServiceLoader.load(ToolkitFactoryService.class, ToolkitFactoryServiceLookup.class.getClassLoader())
+              .iterator();
         }
       };
     }
