@@ -11,7 +11,7 @@ import org.terracotta.toolkit.object.serialization.NotSerializableRuntimeExcepti
 import java.util.List;
 
 /**
- * A toolkit list. It fully supports the contract of {@link java.util.List} and doesn't support null elements. The list
+ * A toolkit list. It supports the contract of {@link java.util.List} and doesn't support null elements. The list
  * performs all mutative operations under the write lock from {@link ToolkitLockedObject#getReadWriteLock()} and all
  * read operations under the read lock from the same.
  * <p>
