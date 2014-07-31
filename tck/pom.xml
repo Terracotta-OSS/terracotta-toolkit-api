@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.terracotta.toolkit</groupId>
     <artifactId>terracotta-toolkit-api-root</artifactId>
-    <version>2.7-SNAPSHOT</version>
+    <version>2.7</version>
     <relativePath>..</relativePath>
   </parent>
 
@@ -16,6 +16,10 @@
   <properties>
     <signature-api.version>2.1</signature-api.version>
     <toolkit-tck.version>1.0</toolkit-tck.version> <!-- sigtest tool -->
+  
+    <metadata.build.jenkins.url>http://jenkins.terracotta.eur.ad.sag:8080/job/terracotta-toolkit-api_trunk_releaser/3/</metadata.build.jenkins.url>
+    <metadata.build.maven.active.profiles>terracotta-repositories,release,tc-publish</metadata.build.maven.active.profiles>
+    <metadata.svn.revision>44370</metadata.svn.revision>
   </properties>
 
   <dependencies>
