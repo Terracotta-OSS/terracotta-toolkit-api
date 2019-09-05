@@ -23,8 +23,7 @@ public class Matches extends BaseClause {
    * <br>
    * WARN: Expressions starting with a leading wildcard character are potentially very expensive (ie. full scan) for
    * indexed caches
-   * <p/>
-   * 
+   *
    * @param attributeName attribute name
    * @param regex expression
    */

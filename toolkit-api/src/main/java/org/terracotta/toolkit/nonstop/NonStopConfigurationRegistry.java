@@ -12,7 +12,7 @@ import org.terracotta.toolkit.object.ToolkitObject;
  * Users are recommended to use {@link NonStopConfigurationBuilder} instead of directly using this class.<br>
  * <br>
  * A user is allowed to register {@link NonStopConfiguration} for a {@link ToolkitObjectType}, an instance, a particular
- * method in the ToolkitObject & a particular method for a particular instance.<br>
+ * method in the ToolkitObject and a particular method for a particular instance.<br>
  * <br>
  * If multiple configurations could match for a particular operation, then the order in which the
  * {@link NonStopConfiguration} is determined as follows:
@@ -52,7 +52,7 @@ public interface NonStopConfigurationRegistry {
    * Please note that the rest of the {@link NonStopConfiguration} is used which was registered for
    * {@link ToolkitObject} instance.
    * 
-   * @throws IllegalArgumentException if timeout <= 0
+   * @throws IllegalArgumentException if timeout &lt;= 0
    */
   void registerTimeoutForSearch(long timeout, String instanceName, ToolkitObjectType objectType);
 
@@ -72,7 +72,7 @@ public interface NonStopConfigurationRegistry {
   NonStopConfiguration getConfigForTypeMethod(String methodName, ToolkitObjectType type);
 
   /**
-   * @return {@link NonStopConfiguration} for the {@link ToolkitObjectType} and whose instance name & method name is
+   * @return {@link NonStopConfiguration} for the {@link ToolkitObjectType} and whose instance name and method name is
    *         passed in as param.
    */
   NonStopConfiguration getConfigForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
@@ -104,8 +104,8 @@ public interface NonStopConfigurationRegistry {
   NonStopConfiguration deregisterForTypeMethod(String methodName, ToolkitObjectType type);
 
   /**
-   * De-register the {@link NonStopConfiguration} associated with the {@link ToolkitObjectType} and whose method name &
-   * instance name is passed in as param.
+   * De-register the {@link NonStopConfiguration} associated with the {@link ToolkitObjectType} and whose method name
+   * and instance name is passed in as param.
    */
   NonStopConfiguration deregisterForInstanceMethod(String methodName, String toolkitTypeName, ToolkitObjectType type);
 
