@@ -4,14 +4,16 @@
 
 package org.terracotta.toolkit.store;
 
+import org.terracotta.toolkit.builder.ToolkitCacheConfigBuilder;
 import org.terracotta.toolkit.builder.ToolkitStoreConfigBuilder;
 import org.terracotta.toolkit.cache.ToolkitCache;
 import org.terracotta.toolkit.tck.TCKStrict;
 
 /**
- * Details of Configuration fields used to configure {@link ToolkitStore} & {@link ToolkitCache}
+ * Details of Configuration fields used to configure {@link ToolkitStore} and {@link ToolkitCache}
  * 
- * @see ToolkitStoreConfigBuilder & ToolkitCacheConfigBuilder
+ * @see ToolkitStoreConfigBuilder
+ * @see ToolkitCacheConfigBuilder
  */
 public interface ToolkitConfigFields {
 

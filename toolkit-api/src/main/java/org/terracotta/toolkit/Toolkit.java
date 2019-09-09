@@ -80,7 +80,7 @@ public interface Toolkit {
    * using the 'configuration' parameter and returns it. Subsequent calls to getStore() with same name will return same
    * key-value store. The {@code configuration} parameter can take various config. Keys in the mapping can take values
    * declared in {@link ToolkitConfigFields}. Behavior of the various configs are detailed in below table: <blockquote>
-   * <table border="0" cellspacing="3" cellpadding="0">
+   * <table border="0" cellspacing="3" cellpadding="0" summary="ToolkitStore Configuration Elements">
    * <tr bgcolor="#ccccff">
    * <th rowspan="2">Configuration Field</th>
    * <th rowspan="2">Default Value</th>
@@ -407,7 +407,7 @@ public interface Toolkit {
    * declared in {@link ToolkitConfigFields} or {@link ToolkitConfigFields}. Refer to
    * {@link Toolkit#getStore(String, Configuration, Class)} for behavior of various key-value store config fields.
    * Behavior of the other cache configs are detailed in below table: <blockquote>
-   * <table border="0" cellspacing="3" cellpadding="0">
+   * <table border="0" cellspacing="3" cellpadding="0" summary="ToolkitCache Configuration Elements">
    * <tr bgcolor="#ccccff">
    * <th rowspan="2">Configuration Field</th>
    * <th rowspan="2">Default Value</th>

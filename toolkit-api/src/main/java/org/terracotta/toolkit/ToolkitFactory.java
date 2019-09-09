@@ -13,7 +13,7 @@ import java.util.ServiceLoader;
 
 /**
  * A static factory class used for creating {@link Toolkit} instances.
- * <p/>
+ * <br>
  * The actual instance of Toolkit created depends on the runtime environment and the configuration. The toolkitURI is
  * used to choose which implementation of Toolkit to instantiate. <br>
  * For example, for creating Terracotta clustered toolkit, use:
@@ -59,7 +59,7 @@ public final class ToolkitFactory {
 
   /**
    * Creates an instance of Toolkit depending on the {@code toolkitURI}.
-   * <p/>
+   * <br>
    * The toolkitURI is in the form of <code>toolkit:<em>type:subname</em></code><br>
    * The actual values of <em>type:subname</em> depends on the particular implementation of the Toolkit. <br>
    * For example, for creating Terracotta clustered toolkit, use:

@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 public interface ToolkitReadWriteLock extends ReadWriteLock, ToolkitObject {
   /**
    * {@inheritDoc}
-   * <p/>
+   * <br>
    * {@link ToolkitLock#getName()} on the returned lock will return null
    * 
    * @return the ToolkitLock used for reading.
@@ -22,7 +22,7 @@ public interface ToolkitReadWriteLock extends ReadWriteLock, ToolkitObject {
 
   /**
    * {@inheritDoc}
-   * <p/>
+   * <br>
    * {@link ToolkitLock#getName()} on the returned lock will return null
    * 
    * @return the ToolkitLock used for writing.
