@@ -4,14 +4,14 @@
   <parent>
     <artifactId>forge-parent</artifactId>
     <groupId>org.terracotta.forge</groupId>
-    <version>4.5</version>
+    <version>4.10</version>
     <relativePath/>
   </parent>
 
   <name>terracotta-toolkit-api-root</name>
   <groupId>org.terracotta.toolkit</groupId>
   <artifactId>terracotta-toolkit-api-root</artifactId>
-  <version>2.9-SNAPSHOT</version>
+  <version>2.9_JAVA11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
