@@ -11,19 +11,6 @@
   <artifactId>terracotta-toolkit-api</artifactId>
   <packaging>jar</packaging>
 
-  <properties>
-    <skipJavadoc>false</skipJavadoc>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  
   <build>
     <plugins>
       <plugin>
@@ -42,24 +29,6 @@
           <classes>${project.build.directory}/classes</classes>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.1</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <skip>${skipJavadoc}</skip>
-              <quiet>true</quiet>
-              <source>8</source>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>    
     </plugins>
   </build>
 

@@ -3,12 +3,9 @@
  */
 package org.terracotta.toolkit.cache;
 
-import org.terracotta.toolkit.tck.TCKStrict;
-
 /**
  * A listener that can be added to {@link ToolkitCache} and get notified on eviction and expiration events
  */
-@TCKStrict
 public interface ToolkitCacheListener<K> {
 
   /**

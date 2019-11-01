@@ -3,14 +3,10 @@
  */
 package org.terracotta.toolkit.cluster;
 
-import org.terracotta.toolkit.tck.TCKStrict;
-
 /**
  * Indicates that the state of a node in the cluster has changed.
  */
-@TCKStrict
 public interface ClusterEvent {
-  @TCKStrict
   static enum Type {
     /**
      * Sent when a node joined the cluster, including the current node.

@@ -3,13 +3,10 @@
  */
 package org.terracotta.toolkit.config;
 
-import org.terracotta.toolkit.tck.TCKStrict;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-@TCKStrict
 public enum SupportedConfigurationType {
   INTEGER(Integer.class) {
 

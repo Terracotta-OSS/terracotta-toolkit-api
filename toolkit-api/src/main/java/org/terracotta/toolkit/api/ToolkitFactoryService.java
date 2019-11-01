@@ -6,7 +6,6 @@ package org.terracotta.toolkit.api;
 import org.terracotta.toolkit.Toolkit;
 import org.terracotta.toolkit.ToolkitFactory;
 import org.terracotta.toolkit.ToolkitInstantiationException;
-import org.terracotta.toolkit.tck.TCKStrict;
 
 import java.util.Properties;
 
@@ -23,7 +22,6 @@ import java.util.Properties;
  * 
  * @author Abhishek Sanoujam
  */
-@TCKStrict
 public interface ToolkitFactoryService {
 
   /**

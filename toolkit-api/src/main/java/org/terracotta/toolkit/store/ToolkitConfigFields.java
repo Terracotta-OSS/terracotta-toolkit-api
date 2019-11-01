@@ -7,7 +7,6 @@ package org.terracotta.toolkit.store;
 import org.terracotta.toolkit.builder.ToolkitCacheConfigBuilder;
 import org.terracotta.toolkit.builder.ToolkitStoreConfigBuilder;
 import org.terracotta.toolkit.cache.ToolkitCache;
-import org.terracotta.toolkit.tck.TCKStrict;
 
 /**
  * Details of Configuration fields used to configure {@link ToolkitStore} and {@link ToolkitCache}
@@ -21,7 +20,6 @@ public interface ToolkitConfigFields {
    * Enum type representing valid values for {@link ToolkitConfigFields#CONSISTENCY_FIELD_NAME} name mapping. Use
    * {@link Consistency#name()}
    */
-  @TCKStrict
   public enum Consistency {
     /**
      * Strong consistency with sync-write locks

@@ -3,8 +3,6 @@
  */
 package org.terracotta.toolkit.cluster;
 
-import org.terracotta.toolkit.tck.TCKStrict;
-
 /**
  * A listener interface that can be implemented to be notified about cluster events.
  * <p>
@@ -28,7 +26,6 @@ import org.terracotta.toolkit.tck.TCKStrict;
  * situations that may resolve themselves automatically over time. Only the current node will receive events concerning
  * its own cluster operations. Nodes in the cluster don't get cluster operation events about other nodes.
  */
-@TCKStrict
 public interface ClusterListener {
   /**
    * This method is called whenever a {@link ClusterEvent} occurs.

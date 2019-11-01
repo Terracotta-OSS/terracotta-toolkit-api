@@ -3,12 +3,9 @@
  */
 package org.terracotta.toolkit.concurrent.locks;
 
-import org.terracotta.toolkit.tck.TCKStrict;
-
 /**
  * Lock types supported by the toolkit.
  */
-@TCKStrict
 public enum ToolkitLockType {
   /**
    * Exclusive write lock.
